@@ -124,18 +124,35 @@
         </div>
 
         <!-- Project 1 -->
-        <div class="project-card group border-t border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
-            <div class="md:flex justify-between items-start">
-                <div class="md:w-1/3 mb-4 md:mb-0">
-                    <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">AWS & Serverless</span>
-                    <h3 class="text-3xl font-bold mt-4">Self-Storage Platform</h3>
+        <!-- UPGRADED PROJECT CARD -->
+        <div class="project-card group border-t border-white/20 py-12 transition-colors hover:bg-neutral-900">
+            <div class="md:flex justify-between items-start gap-6">
+                
+                <!-- Left: Title & Tech -->
+                <div class="md:w-1/4">
+                    <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">AWS & React</span>
+                    <h3 class="text-3xl font-bold mt-4">Self-Storage App</h3>
                 </div>
-                <div class="md:w-1/3 text-neutral-400 text-sm md:text-base mb-4 md:mb-0">
-                    Developed a serverless SPA allowing customers to browse units, book instantly, and manage rentals. Built with AWS Lambda, DynamoDB, Cognito, and S3.
+
+                <!-- Middle: Image & Desc -->
+                <div class="md:w-2/4">
+                    <!-- Ensure you upload an image named 'project1.jpg' to github -->
+                    <img src="project1.jpg" alt="Preview" class="w-full h-48 object-cover rounded-lg mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <p class="text-neutral-400 text-sm">
+                        Developed a serverless SPA allowing customers to browse units and book instantly. Built with AWS Lambda, DynamoDB, and Cognito.
+                    </p>
                 </div>
-                <div class="md:w-1/3 flex justify-end">
-                    <span class="project-arrow text-4xl transition-transform duration-300">→</span>
+
+                <!-- Right: Links -->
+                <div class="md:w-1/4 flex flex-col items-end gap-3">
+                    <a href="https://github.com/yourusername/project" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase">
+                        View Code
+                    </a>
+                    <a href="https://your-live-link.com" target="_blank" class="px-4 py-2 bg-white text-black border border-white rounded-full hover:bg-transparent hover:text-white transition-all text-sm uppercase">
+                        Live Demo
+                    </a>
                 </div>
+                
             </div>
         </div>
 

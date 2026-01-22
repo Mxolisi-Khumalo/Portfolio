@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow Fight Game</title>
+    <style>
+        body { background: #222; color: #fff; font-family: Arial, sans-serif; margin: 0; }
+        #gameContainer { width: 800px; margin: 30px auto; background: #111; border-radius: 10px; box-shadow: 0 0 20px #000; padding: 20px; }
+        .screen { display: none; }
+        .active { display: block; }
+        .character-list { display: flex; justify-content: center; gap: 40px; margin: 30px 0; }
+        .character { width: 100px; height: 180px; background: #333; border-radius: 10px; display: flex; flex-direction: column; align-items: center; cursor: pointer; border: 3px solid transparent; transition: border 0.2s; }
+        .character.selected { border: 3px solid #f39c12; }
+        .character span { margin-top: 10px; }
+        .option-btn { padding: 10px 30px; font-size: 18px; margin: 10px; border: none; border-radius: 5px; background: #444; color: #fff; cursor: pointer; }
+        .option-btn:hover { background: #f39c12; }
+        #gameCanvas { background: #222; display: block; margin: 0 auto; border-radius: 10px; }
+        #info { text-align: center; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Character Selection Screen -->
+        <div id="charSelectScreen" class="screen active">
+            <h2>Select Your Character</h2>
+            <div class="character-list" id="charList1"></div>
+            <button class="option-btn" id="charSelectNext">Next</button>
+        </div>
+        <!-- Player 2 Option Screen -->
+        <div id="player2Screen" class="screen">
+            <h2>Choose Opponent</h2>
+            <button class="option-btn" id="p2Human">2nd Player</button>
+            <button class="option-btn" id="p2AI">AI Opponent</button>
+        </div>
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div id="info"></div>
+            <canvas id="gameCanvas" width="700" height="300"></canvas>
+            <div style="text-align:center; margin-top:10px;">
+                <span>Player 1: W/A/S/D = Move, F = Punch, G = Kick</span><br>
+                <span id="p2Controls"></span>
+            </div>
+            <button class="option-btn" id="restartBtn" style="display:none;">Restart</button>
+        </div>
+    </div>
+    <script>
+        // Character Data
+        const characters = [
+            { name: "Shadow", color: "#222", accent: "#fff" },
+            { name: "Blaze", color: "#c0392b", accent: "#f1c40f" },
+            { name: "Frost", color: "#2980b9", accent: "#ecf0f1" }
+        ];
+
+        // State
+        let player1Char = 0, player2Char = 1, isAI = false, gameActive = false;
+
+        // DOM Elements
+        const charSelectScreen = document.getElementById('charSelectScreen');
+        const charList1 = document.getElementById('charList1');
+        const charSelectNext = document.getElementById('charSelectNext');
+        const player2Screen = document.getElementById('player2Screen');
+        const p2Human = document.getElementById('p2Human');
+        const p2AI = document.getElementById('p2AI');
+        const gameScreen = document.getElementById('gameScreen');
+        const gameCanvas = document.getElementById('gameCanvas');
+        const ctx = gameCanvas.getContext('2d');
+        const info = document.getElementById('info');
+        const restartBtn = document.getElementById('restartBtn');
+        const p2Controls = document.getElementById('p2Controls');
+
+        // Character Selection UI
+        function renderCharList(container, selectedIdx, onSelect) {
+            container.innerHTML = '';
+            characters.forEach((char, idx) => {
+                const div = document.createElement('div');
+                div.className = 'character' + (selectedIdx === idx ? ' selected' : '');
+                div.style.background = char.color;
+                div.innerHTML = `<svg width="60" height="120">
+                    <circle cx="30" cy="30" r="20" fill="${char.accent}" />
+                    <rect x="20" y="50" width="20" height="50" fill="${char.accent}" />
+                </svg>
+                <span>${char.name}</span>`;
+                div.onclick = () => onSelect(idx);
+                container.appendChild(div);
+            });
+        }
+
+        let char1Selected = 0;
+        renderCharList(charList1, char1Selected, idx => {
+            char1Selected = idx;
+            renderCharList(charList1, char1Selected, idx2 => {
+                char1Selected = idx2;
+                renderCharList(charList1, char1Selected, arguments.callee);
+            });
+        });
+
+        charSelectNext.onclick = () => {
+            player1Char = char1Selected;
+            player2Char = (player1Char + 1) % characters.length;
+            charSelectScreen.classList.remove('active');
+            player2Screen.classList.add('active');
+        };
+
+        p2Human.onclick = () => {
+            isAI = false;
+            startGame();
+        };
+        p2AI.onclick = () => {
+            isAI = true;
+            startGame();
+        };
+
+        function startGame() {
+            player2Screen.classList.remove('active');
+            gameScreen.classList.add('active');
+            p2Controls.innerText = isAI
+                ? "AI controls Player 2"
+                : "Player 2: I/J/K/L = Move, ; = Punch, ' = Kick";
+            restartBtn.style.display = "none";
+            initGame();
+        }
+
+        // Game Logic
+        let players, keys, winner, lastUpdate;
+
+        function initGame() {
+            players = [
+                {
+                    ...characters[player1Char],
+                    x: 100, y: 200, vx: 0, vy: 0, dir: 1, hp: 100,
+                    attacking: false, attackType: null, attackTimer: 0,
+                    controls: { left: 'a', right: 'd', up: 'w', down: 's', punch: 'f', kick: 'g' }
+                },
+                {
+                    ...characters[player2Char],
+                    x: 600, y: 200, vx: 0, vy: 0, dir: -1, hp: 100,
+                    attacking: false, attackType: null, attackTimer: 0,
+                    controls: isAI ? null : { left: 'j', right: 'l', up: 'i', down: 'k', punch: ';', kick: "'" }
+                }
+            ];
+            keys = {};
+            winner = null;
+            lastUpdate = performance.now();
+            gameActive = true;
+            info.innerText = '';
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener('keydown', e => {
+            keys[e.key] = true;
+        });
+        document.addEventListener('keyup', e => {
+            keys[e.key] = false;
+        });
+
+        function gameLoop(ts) {
+            if (!gameActive) return;
+            let dt = Math.min((ts - lastUpdate) / 16, 2);
+            lastUpdate = ts;
+            updatePlayers(dt);
+            renderGame();
+            if (!winner) requestAnimationFrame(gameLoop);
+        }
+
+        function updatePlayers(dt) {
+            players.forEach((p, idx) => {
+                // Movement
+                let c = p.controls;
+                if (c) {
+                    p.vx = 0;
+                    if (keys[c.left]) { p.vx = -3 * p.dir; }
+                    if (keys[c.right]) { p.vx = 3 * p.dir; }
+                    if (keys[c.up]) { p.y -= 3; }
+                    if (keys[c.down]) { p.y += 3; }
+                    // Punch
+                    if (keys[c.punch] && !p.attacking && p.attackTimer <= 0) {
+                        p.attacking = true;
+                        p.attackType = 'punch';
+                        p.attackTimer = 15;
+                    }
+                    // Kick
+                    if (keys[c.kick] && !p.attacking && p.attackTimer <= 0) {
+                        p.attacking = true;
+                        p.attackType = 'kick';
+                        p.attackTimer = 18;
+                    }
+                } else if (isAI && idx === 1) {
+                    // Simple AI: move towards player, randomly punch or kick if close
+                    let p1 = players[0];
+                    if (Math.abs(p.x - p1.x) > 60) {
+                        p.vx = (p.x > p1.x) ? -2 : 2;
+                    } else {
+                        p.vx = 0;
+                        if (!p.attacking && p.attackTimer <= 0) {
+                            p.attacking = true;
+                            p.attackType = Math.random() < 0.5 ? 'punch' : 'kick';
+                            p.attackTimer = p.attackType === 'punch' ? 15 : 18;
+                        }
+                    }
+                }
+                p.x += p.vx * dt;
+                p.y = Math.max(180, Math.min(220, p.y));
+                // Attack logic
+                if (p.attacking) {
+                    p.attackTimer -= dt;
+                    if (p.attackTimer <= 0) {
+                        p.attacking = false;
+                        p.attackTimer = 30; // cooldown
+                        // Check hit
+                        let opp = players[1 - idx];
+                        let attackOffset = p.attackType === 'kick' ? 40 : 30;
+                        let attackRange = p.attackType === 'kick' ? 50 : 40;
+                        let attackDamage = p.attackType === 'kick' ? 20 : 15;
+                        if (Math.abs(p.x + attackOffset * p.dir - opp.x) < attackRange && Math.abs(p.y - opp.y) < 40) {
+                            opp.hp -= attackDamage;
+                            if (opp.hp <= 0) {
+                                winner = idx;
+                                endGame();
+                            }
+                        }
+                        p.attackType = null;
+                    }
+                } else if (p.attackTimer > 0) {
+                    p.attackTimer -= dt;
+                }
+                // Boundaries
+                p.x = Math.max(40, Math.min(660, p.x));
+            });
+        }
+
+        function renderGame() {
+            ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+            // Draw ground
+            ctx.fillStyle = "#333";
+            ctx.fillRect(0, 250, 700, 50);
+            // Draw players
+            players.forEach((p, idx) => {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.scale(p.dir, 1);
+                // Shadow
+                ctx.beginPath();
+                ctx.ellipse(0, 50, 25, 8, 0, 0, Math.PI * 2);
+                ctx.fillStyle = "#000a";
+                ctx.fill();
+                // Body
+                ctx.beginPath();
+                ctx.arc(0, 0, 22, 0, Math.PI * 2);
+                ctx.fillStyle = p.accent;
+                ctx.fill();
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-10, 22, 20, 40);
+                // Arms (punch)
+                ctx.strokeStyle = p.accent;
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(0, 30);
+                if (p.attacking && p.attackType === 'punch') {
+                    ctx.lineTo(35, 40);
+                } else {
+                    ctx.lineTo(20, 40);
+                }
+                ctx.moveTo(0, 30);
+                ctx.lineTo(-20, 40);
+                ctx.stroke();
+                // Legs (kick)
+                ctx.strokeStyle = p.accent;
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(0, 62);
+                if (p.attacking && p.attackType === 'kick') {
+                    ctx.lineTo(40, 80);
+                } else {
+                    ctx.lineTo(15, 80);
+                }
+                ctx.moveTo(0, 62);
+                ctx.lineTo(-15, 80);
+                ctx.stroke();
+                // Name
+                ctx.fillStyle = "#fff";
+                ctx.font = "bold 14px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(p.name, 0, -30);
+                ctx.restore();
+                // HP Bar
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(40 + idx * 500, 20, 160, 18);
+                ctx.fillStyle = "#e74c3c";
+                ctx.fillRect(40 + idx * 500, 20, Math.max(0, p.hp) * 1.6, 18);
+                ctx.strokeStyle = "#000";
+                ctx.strokeRect(40 + idx * 500, 20, 160, 18);
+            });
+        }
+
+        function endGame() {
+            gameActive = false;
+            info.innerHTML = `<h2>${players[winner].name} Wins!</h2>`;
+            restartBtn.style.display = "inline-block";
+        }
+
+        restartBtn.onclick = () => {
+            gameScreen.classList.remove('active');
+            charSelectScreen.classList.add('active');
+            renderCharList(charList1, 0, idx => {
+                char1Selected = idx;
+                renderCharList(charList1, char1Selected, arguments.callee);
+            });
+        };
+    </script>
+</body>
+</html>

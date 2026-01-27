@@ -58,6 +58,42 @@
             transition: transform 0.1s; /* Smoothness is handled by GSAP, but this is a fallback */
             will-change: transform;
         }
+
+        /* Infinite Scroll Animation */
+        .scroller {
+            mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        }
+
+        .scroller__inner {
+            width: max-content;
+            flex-wrap: nowrap;
+            animation: scroll 40s linear infinite;
+        }
+
+        .scroller:hover .scroller__inner {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            to { transform: translate(calc(-50% - 1rem)); } /* Moves half the distance */
+        }
+
+        /* Activity Card Hover Effects */
+        .activity-card {
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+        .activity-card:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        /* Modal/Lightbox */
+        #lightbox {
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -193,6 +229,136 @@
             </div>
         </div>
     </section>
+
+    <!-- RECENT ACTIVITY TICKER -->
+    <section class="py-20 border-b border-white/10 overflow-hidden">
+        <div class="px-6 md:px-20 mb-10 flex justify-between items-end">
+            <h2 class="text-4xl md:text-6xl font-bold">LATEST ACTIVITY</h2>
+            <div class="flex items-center gap-2 text-neutral-500 text-sm uppercase tracking-widest">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                Live Feed
+            </div>
+        </div>
+
+        <!-- Scroller Container -->
+        <div class="scroller w-full">
+            <!-- Inner Track (Must contain duplicate content for loop) -->
+            <div class="scroller__inner flex gap-8 pl-6 md:pl-20">
+                
+                <!-- ITEM 1: EVENT (Image Popup) -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/event1.jpg', 'AWS Summit 2025 - Johannesburg')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/event1.jpg" class="w-full h-full object-cover" alt="Event">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white border border-white rounded-full px-4 py-1 text-sm uppercase">Expand View</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">AWS Summit Joburg</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">EVENT</span>
+                    </div>
+                </div>
+
+                <!-- ITEM 2: YOUTUBE/SOCIAL (External Link) -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="window.open('https://youtube.com/yourvideo', '_blank')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/wip-code.jpg" class="w-full h-full object-cover" alt="YouTube">
+                        <!-- Play Button Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white/10 backdrop-blur rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">Building a Neural Net</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">YOUTUBE</span>
+                    </div>
+                </div>
+
+                <!-- ITEM 3: ACHIEVEMENT (Image Popup) -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/cert.jpg', 'Microsoft Azure Security Certification')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/cert.jpg" class="w-full h-full object-cover" alt="Cert">
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">Azure Security Cert</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span>
+                    </div>
+                </div>
+
+                <!-- ITEM 4: WIP PROJECT (Image Popup) -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/wip-design.jpg', 'Current WIP: E-Commerce Dashboard')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/wip-design.jpg" class="w-full h-full object-cover" alt="WIP">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">
+                            IN PROGRESS
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">E-Commerce Dashboard</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">DEV LOG</span>
+                    </div>
+                </div>
+
+                <!-- DUPLICATE ITEMS (Required for seamless infinite scroll) -->
+                <!-- We repeat the exact same items below so the animation loops perfectly -->
+                
+                <!-- DUPLICATE 1 -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/event1.jpg', 'AWS Summit 2025 - Johannesburg')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/event1.jpg" class="w-full h-full object-cover" alt="Event">
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">AWS Summit Joburg</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">EVENT</span>
+                    </div>
+                </div>
+                <!-- DUPLICATE 2 -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="window.open('https://youtube.com/yourvideo', '_blank')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/wip-code.jpg" class="w-full h-full object-cover" alt="YouTube">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white/10 backdrop-blur rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">▶</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">Building a Neural Net</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">YOUTUBE</span>
+                    </div>
+                </div>
+                <!-- DUPLICATE 3 -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/cert.jpg', 'Microsoft Azure Security Certification')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/cert.jpg" class="w-full h-full object-cover" alt="Cert">
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">Azure Security Cert</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span>
+                    </div>
+                </div>
+                <!-- DUPLICATE 4 -->
+                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/wip-design.jpg', 'Current WIP: E-Commerce Dashboard')">
+                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
+                        <img src="src/pictures/wip-design.jpg" class="w-full h-full object-cover" alt="WIP">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">IN PROGRESS</div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <h4 class="text-xl font-bold">E-Commerce Dashboard</h4>
+                        <span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">DEV LOG</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal (Hidden by default) -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col items-center justify-center p-4 opacity-0 pointer-events-none" onclick="closeLightbox()">
+        <div class="absolute top-6 right-6 text-white cursor-pointer hover:text-neutral-400">CLOSE [X]</div>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border border-white/20">
+        <p id="lightbox-caption" class="text-white mt-4 text-xl font-light tracking-wide"></p>
+    </div>
 
     <!-- Experience & Education Grid -->
     <section class="py-20 px-6 md:px-20 bg-neutral-900 text-black">
@@ -336,6 +502,42 @@
                 opacity: 0,
                 duration: 0.8
             });
+        });
+
+        // --- 4. Lightbox Logic for Activity Feed ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(imageSrc, caption) {
+            lightboxImg.src = imageSrc;
+            lightboxCaption.textContent = caption;
+            
+            // Show Modal
+            lightbox.classList.remove('hidden', 'pointer-events-none');
+            
+            // Small delay to allow CSS transition to work
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+            
+            // Pause GSAP/ScrollTrigger when modal is open (optional polish)
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden', 'pointer-events-none');
+                lightboxImg.src = '';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }, 300);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeLightbox();
         });
     </script>
 </body>

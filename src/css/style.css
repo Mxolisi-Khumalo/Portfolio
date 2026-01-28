@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+        
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #050505;
+    color: #f3f4f6;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* --- Custom Cursor --- */
+.cursor-dot, .cursor-outline {
+    position: fixed; top: 0; left: 0;
+    transform: translate(-50%, -50%); border-radius: 50%;
+    z-index: 9999; pointer-events: none;
+}
+.cursor-dot { width: 8px; height: 8px; background-color: white; }
+.cursor-outline {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* --- Utilities --- */
+.reveal-text { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+
+/* --- Project Media Interactions (Grayscale + Zoom) --- */
+.project-media {
+    transition: all 0.5s ease;
+    filter: grayscale(100%);
+    transform: scale(1);
+}
+
+/* When hovering the *card*, the image/video wakes up */
+.project-card:hover .project-media {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* Add a "Play" overlay for the video project */
+.play-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.project-card:hover .play-overlay {
+    opacity: 1;
+}
+
+/* --- 3D Tilt Container --- */
+.tilt-container { perspective: 1000px; transform-style: preserve-3d; }
+.tilt-image { transition: transform 0.1s; will-change: transform; }
+
+/* --- Marquee (Skills Section) --- */
+.marquee-container { overflow: hidden; white-space: nowrap; }
+.marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- Scroller (Activity Section) --- */
+.scroller { mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); }
+.scroller__inner { width: max-content; flex-wrap: nowrap; animation: scroll 40s linear infinite; }
+.scroller:hover .scroller__inner { animation-play-state: paused; }
+@keyframes scroll { to { transform: translate(calc(-50% - 1rem)); } }
+
+/* --- Activity Cards --- */
+.activity-card { transition: all 0.3s ease; filter: grayscale(100%); }
+.activity-card:hover { filter: grayscale(0%); transform: scale(1.05); z-index: 10; }
+
+/* --- Lightbox --- */
+#lightbox { backdrop-filter: blur(10px); transition: opacity 0.3s ease; }
+/* Utility to hide elements inside lightbox */
+.hidden-media { display: none; }

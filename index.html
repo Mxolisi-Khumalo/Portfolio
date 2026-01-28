@@ -60,7 +60,7 @@
         .tilt-container { perspective: 1000px; transform-style: preserve-3d; }
         .tilt-image { transition: transform 0.1s; will-change: transform; }
 
-        /* --- Marquee (Skills Section - FIXED) --- */
+        /* --- Marquee (Skills Section) --- */
         .marquee-container { overflow: hidden; white-space: nowrap; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee {
@@ -123,7 +123,7 @@
         </div>
     </header>
 
-    <!-- Infinite Scroll Skills (RESTORED) -->
+    <!-- Infinite Scroll Skills -->
     <section class="py-12 border-b border-white/10 bg-neutral-900">
         <div class="marquee-container text-4xl md:text-6xl font-bold opacity-30 select-none">
             <div class="marquee-content">
@@ -139,95 +139,96 @@
             <span class="hidden md:block text-neutral-500">(03)</span>
         </div>
 
-        <!-- Project 1 (Image Click) -->
+        <!-- Project 1 (Self-Storage) -->
         <div class="project-card group border-t border-white/20 py-12 transition-colors hover:bg-neutral-900">
-            <div class="md:flex justify-between items-start gap-6">
-                <div class="md:w-1/3 mb-4 md:mb-0">
-                    <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">AWS & HTML/CSS/JS</span>
-                    <h3 class="text-3xl font-bold mt-4">Self-Storage App</h3>
-                </div>
-                <!-- Interactive Media Container -->
-                <div class="md:w-2/4 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative" 
-                     onclick="openLightbox('src/pictures/project1.jpg', 'Self-Storage Platform UI')">
-                    
-                    <img src="src/pictures/project1.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
-                        <span class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">Expand View</span>
+            <div class="md:flex justify-between items-start gap-8">
+                
+                <!-- Left: Title & Description -->
+                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
+                    <div>
+                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">AWS & HTML/CSS/JS</span>
+                        <h3 class="text-3xl font-bold mt-4 leading-tight">Self-Storage App</h3>
                     </div>
-                </div>
-                <div class="md:w-1/4 flex flex-col items-end gap-3">
-                    <div class="md:w-3/4">
-                         <p class="text-neutral-400 text-sm mb-4 text-right">
+                    <p class="text-neutral-400 text-sm leading-relaxed">
                         Developed a serverless SPA allowing customers to browse units and book instantly. Built with AWS Lambda, DynamoDB, and Cognito.
-                        </p>
-                    </div>
-                   
-                    <a href="https://github.com/yourusername/project" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase">View Code</a>
+                    </p>
                 </div>
-            </div>
-        </div>
 
-        <!-- Project 2 (Image Click) -->
-        <div class="project-card group border-t border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
-            <div class="md:flex justify-between items-start gap-6">
-                <div class="md:w-1/3 mb-4 md:mb-0">
-                    <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">Java & Concurrency</span>
-                    <h3 class="text-3xl font-bold mt-4">Thread Simulation</h3>
-                </div>
-                <!-- Interactive Media Container -->
-                <div class="md:w-2/4 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
-                     onclick="openLightbox('src/pictures/project2.jpg', 'Concurrent Thread Simulation')">
-                    
-                    <img src="src/pictures/project2.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    
+                <!-- Middle: Interactive Media Container -->
+                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative" 
+                     onclick="openLightbox('src/pictures/project1.jpg', 'Self-Storage Platform UI')">
+                    <img src="src/pictures/project1.jpg" alt="Preview" class="project-media w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
                         <span class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">Expand View</span>
                     </div>
                 </div>
-                <div class="md:w-1/4 flex flex-col items-end gap-3">
-                     <div class="md:w-3/4">
-                         <p class="text-neutral-400 text-sm mb-4 text-right">
-                        Engineered a real-time simulation using monitors to eliminate race conditions. Designed deadlock-prevention algorithms.
-                        </p>
-                    </div>
-                    <a href="https://github.com/Mxolisi-Khumalo/Club-Simulation" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase">View Code</a>
+
+                <!-- Right: Buttons -->
+                <div class="md:w-1/6 flex flex-col items-end gap-3">
+                    <a href="https://github.com/yourusername/project" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
                 </div>
             </div>
         </div>
 
-        <!-- Project 3 (VIDEO Click) -->
+        <!-- Project 2 (Thread Sim) -->
+        <div class="project-card group border-t border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
+            <div class="md:flex justify-between items-start gap-8">
+                
+                <!-- Left: Title & Description -->
+                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
+                    <div>
+                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">Java & Concurrency</span>
+                        <h3 class="text-3xl font-bold mt-4 leading-tight">Thread Simulation</h3>
+                    </div>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Engineered a real-time simulation using monitors to eliminate race conditions. Designed deadlock-prevention algorithms.
+                    </p>
+                </div>
+
+                <!-- Middle: Interactive Media Container -->
+                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
+                     onclick="openLightbox('src/pictures/project2.jpg', 'Concurrent Thread Simulation')">
+                    <img src="src/pictures/project2.jpg" alt="Preview" class="project-media w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
+                        <span class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">Expand View</span>
+                    </div>
+                </div>
+
+                <!-- Right: Buttons -->
+                <div class="md:w-1/6 flex flex-col items-end gap-3">
+                    <a href="https://github.com/Mxolisi-Khumalo/Club-Simulation" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 (Shadow Fight) -->
         <div class="project-card group border-t border-b border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
-            <div class="md:flex justify-between items-start gap-6">
-                <div class="md:w-1/3 mb-4 md:mb-0">
-                    <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">HTML5 Canvas & JS</span>
-                    <h3 class="text-3xl font-bold mt-4">Shadow Fight Game</h3>
+            <div class="md:flex justify-between items-start gap-8">
+                
+                <!-- Left: Title & Description -->
+                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
+                    <div>
+                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">HTML5 Canvas & JS</span>
+                        <h3 class="text-3xl font-bold mt-4 leading-tight">Shadow Fight Game</h3>
+                    </div>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Browser-based 2D fighting game with character selection and AI opponent modes. Implemented custom combat loops.
+                    </p>
                 </div>
                 
-                <!-- Interactive Media Container (TRIGGERS VIDEO) -->
-                <!-- Note the 3rd argument 'true' which tells the lightbox it is a video -->
-                <div class="md:w-2/4 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
+                <!-- Middle: Interactive Media Container (Video Trigger) -->
+                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
                      onclick="openLightbox('src/pictures/gameplay.mp4', 'Shadow Fight - Gameplay Demo', true)">
-                    
-                    <!-- We show the Image Thumbnail here -->
                     <img src="src/pictures/project3.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    
-                    <!-- Play Button Overlay -->
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
-                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center pl-1 font-bold shadow-lg">
-                            ▶
-                        </div>
+                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center pl-1 font-bold shadow-lg">▶</div>
                     </div>
                 </div>
 
-                <div class="md:w-1/4 flex flex-col items-end gap-3">
-                     <div class="md:w-3/4">
-                         <p class="text-neutral-400 text-sm mb-4 text-right">
-                        Browser-based 2D fighting game with character selection and AI opponent modes. Implemented custom combat loops.
-                        </p>
-                    </div>
-                    <a href="https://github.com/Mxolisi-Khumalo/Fighting-game#" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase">View Code</a>
-                    <a href="src/sites/fighting_game.html" target="_blank" class="px-4 py-2 bg-white text-black border border-white rounded-full hover:bg-transparent hover:text-white transition-all text-sm uppercase">Play Game</a>
+                <!-- Right: Buttons -->
+                <div class="md:w-1/6 flex flex-col items-end gap-3">
+                    <a href="https://github.com/Mxolisi-Khumalo/Fighting-game#" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
+                    <a href="src/sites/fighting_game.html" target="_blank" class="px-4 py-2 bg-white text-black border border-white rounded-full hover:bg-transparent hover:text-white transition-all text-sm uppercase whitespace-nowrap">Play Game</a>
                 </div>
             </div>
         </div>
@@ -263,7 +264,7 @@
                     <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
                         <img src="src/pictures/outlier.jpg" class="w-full h-full object-cover" alt="Cert">
                     </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Top 50 AI Brilliance</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span></div>
+                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Top 50 AI Brilliance in SA</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span></div>
                 </div>
                 <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/portfolio.jpg', 'Portfolio Development')">
                     <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">

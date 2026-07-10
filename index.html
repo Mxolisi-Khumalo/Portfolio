@@ -1,313 +1,593 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mxolisi Khumalo | Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Mxolisi Khumalo — Software Engineer · Mentor · Tech Expert</title>
+    <meta name="description" content="Mxolisi Khumalo — Software Engineer, developer, mentor and tech expert. Java, Python, C#, Cloud (AWS &amp; Azure). Building scalable systems and growing the next generation of engineers.">
+    <meta name="author" content="Mxolisi Khumalo">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mxolisi Khumalo — Software Engineer · Mentor · Tech Expert">
+    <meta property="og:description" content="Building scalable systems and growing the next generation of engineers.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="src/pictures/profile.jpg">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
     <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body>
+<body class="is-loading">
 
-    <!-- Custom Cursor -->
+    <!-- ===================== PRELOADER ===================== -->
+    <div id="preloader">
+        <div class="pre-word">Compiling Portfolio</div>
+        <div class="pre-count">0<span>%</span></div>
+        <div class="pre-bar"><div class="pre-bar__fill"></div></div>
+    </div>
+
+    <!-- ===================== CURSOR + FX ===================== -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+    <div id="spotlight"></div>
+    <div id="grain"></div>
+    <div id="progress"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference">
-        <div class="text-xl font-bold tracking-tighter">MK.dev</div>
-        <a href="mailto:mxolisikhumalo611@gmail.com" class="hover-trigger px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm uppercase">Let's Talk</a>
+    <!-- ===================== NAV ===================== -->
+    <nav class="nav">
+        <a href="#top" class="brand hover-trigger">
+            <span class="brand-mark"></span> MK<span class="accent">.</span>dev
+        </a>
+        <div class="nav-links">
+            <div class="nav-menu nav-links">
+                <a href="#work" class="navlink">Work</a>
+                <a href="#journey" class="navlink">Journey</a>
+                <a href="#awards" class="navlink">Awards</a>
+                <a href="#stack" class="navlink">Stack</a>
+            </div>
+            <a href="mailto:mxolisikhumalo611@gmail.com" class="btn-pill btn-pill--accent hover-trigger" data-magnetic>Let's Talk</a>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="min-h-screen flex flex-col justify-center px-6 md:px-20 relative pt-20 border-b border-white/10">
-        <p class="text-neutral-400 mb-4 uppercase tracking-widest text-sm fade-in">Springs, Gauteng, SA</p>
-        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter mb-12">
-            <div class="reveal-text"><span class="block">MXOLISI</span></div>
-            <div class="reveal-text"><span class="block text-neutral-500">KHUMALO</span></div>
+    <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+        <div class="hero-meta">
+            <span>Springs · Johannesburg, ZA</span>
+            <span class="avail"><span class="dot-live"></span> Available for 2026 opportunities</span>
+            <span>EN · ZU · XH</span>
+        </div>
+
+        <h1 class="hero-title">
+            <span class="line"><span>Mxolisi</span></span>
+            <span class="line"><span class="outline">Khumalo</span></span>
         </h1>
-        <div class="grid md:grid-cols-2 gap-12 items-center fade-in pb-12">
-            <div class="max-w-xl">
-                <p class="text-xl md:text-2xl font-light leading-relaxed mb-8">
-                    Software Developer & Engineer specializing in <span class="text-white font-semibold">Java, Python, & Cloud Computing</span>. Building scalable, efficient applications and solving real-world problems while enjoying the craft.
+
+        <div class="hero-grid">
+            <div>
+                <p class="hero-lead">
+                    Software Engineer, mentor &amp; tech expert building <b>scalable, resilient systems</b>
+                    across <b>Java, Python, C#</b> and the <b>cloud</b> — and growing the next generation
+                    of engineers along the way.
                 </p>
-                <div class="flex gap-6 text-sm uppercase tracking-wider">
-                    <a href="http://linkedin.com/in/mxolisi-khumalo-8b6296324" target="_blank" class="hover-trigger hover:text-neutral-400 transition-colors border-b border-transparent hover:border-white">LinkedIn</a>
-                    <a href="http://github.com/Mxolisi-Khumalo" target="_blank" class="hover-trigger hover:text-neutral-400 transition-colors border-b border-transparent hover:border-white">GitHub</a>
-                    <a href="https://gitlab.wethinkco.de/mxkhumajhb024" target="_blank" class="hover-trigger hover:text-neutral-400 transition-colors border-b border-transparent hover:border-white">GitLab</a>
+                <div class="hero-socials">
+                    <a href="https://www.linkedin.com/in/mxolisi-khumalo-8b6296324/" target="_blank" rel="noopener" class="hover-trigger">LinkedIn ↗</a>
+                    <a href="https://github.com/Mxolisi-Khumalo" target="_blank" rel="noopener" class="hover-trigger">GitHub ↗</a>
+                    <a href="https://gitlab.wethinkco.de/mxkhumajhb024" target="_blank" rel="noopener" class="hover-trigger">GitLab ↗</a>
                 </div>
             </div>
-            <div class="tilt-container flex justify-center md:justify-end">
-                <div id="profile-wrapper" class="relative w-full max-w-md aspect-[3/4] md:aspect-square">
-                    <div class="absolute inset-0 border border-white/20 translate-x-4 translate-y-4 -z-10 rounded-lg"></div>
-                    <img id="profile-img" src="src/pictures/profile.jpg" alt="Mxolisi Khumalo" class="tilt-image w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl">
+
+            <div class="portrait-wrap">
+                <div class="portrait hover-trigger" data-cursor="Hi 👋">
+                    <div class="frame"></div>
+                    <img src="src/pictures/profile.jpg" alt="Mxolisi Khumalo">
+                    <span class="tag">// full-stack · cloud · mentor</span>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll-cue">
+            <span>Scroll</span>
+            <span class="bar"></span>
         </div>
     </header>
 
-    <!-- Infinite Scroll Skills -->
-    <section class="py-12 border-b border-white/10 bg-neutral-900">
-        <div class="marquee-container text-4xl md:text-6xl font-bold opacity-30 select-none">
-            <div class="marquee-content">
-                JAVA — PYTHON — AWS — AZURE — JAVASCRIPT — C# — SQL — DOCKER — SPRING BOOT — MULTITHREADING — OOP — GIT — AGILE — JAVA — PYTHON — AWS — AZURE — JAVASCRIPT — C# — SQL — DOCKER — SPRING BOOT — MULTITHREADING — OOP — GIT — AGILE
-            </div>
+    <!-- ===================== MARQUEE ===================== -->
+    <section class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+            <span>Java</span><span class="sep">/</span><span>Python</span><span class="sep">/</span><span>C#</span><span class="sep">/</span>
+            <span>AWS</span><span class="sep">/</span><span>Azure</span><span class="sep">/</span><span>JavaScript</span><span class="sep">/</span>
+            <span>SQL</span><span class="sep">/</span><span>Docker</span><span class="sep">/</span><span>Spring&nbsp;Boot</span><span class="sep">/</span>
+            <span>Concurrency</span><span class="sep">/</span><span>OOP</span><span class="sep">/</span><span>Git</span><span class="sep">/</span><span>Agile</span><span class="sep">/</span>
+            <!-- duplicate for seamless loop -->
+            <span>Java</span><span class="sep">/</span><span>Python</span><span class="sep">/</span><span>C#</span><span class="sep">/</span>
+            <span>AWS</span><span class="sep">/</span><span>Azure</span><span class="sep">/</span><span>JavaScript</span><span class="sep">/</span>
+            <span>SQL</span><span class="sep">/</span><span>Docker</span><span class="sep">/</span><span>Spring&nbsp;Boot</span><span class="sep">/</span>
+            <span>Concurrency</span><span class="sep">/</span><span>OOP</span><span class="sep">/</span><span>Git</span><span class="sep">/</span><span>Agile</span><span class="sep">/</span>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="py-20 px-6 md:px-20">
-        <div class="flex items-end justify-between mb-16">
-            <h2 class="text-4xl md:text-6xl font-bold">SELECTED WORK</h2>
-            <span class="hidden md:block text-neutral-500">(03)</span>
+    <!-- ===================== STATS ===================== -->
+    <section class="stats" id="stats">
+        <div class="stat">
+            <div class="num"><span data-count="25">0</span><span class="suf">+</span></div>
+            <div class="label">Repositories shipped</div>
         </div>
-
-        <!-- Project 1 (Self-Storage) -->
-        <div class="project-card group border-t border-white/20 py-12 transition-colors hover:bg-neutral-900">
-            <div class="md:flex justify-between items-start gap-8">
-                
-                <!-- Left: Title & Description -->
-                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
-                    <div>
-                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">AWS & HTML/CSS/JS</span>
-                        <h3 class="text-3xl font-bold mt-4 leading-tight">Self-Storage App</h3>
-                    </div>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
-                        Developed a serverless SPA allowing customers to browse units and book instantly. Built with AWS Lambda, DynamoDB, and Cognito.
-                    </p>
-                </div>
-
-                <!-- Middle: Interactive Media Container -->
-                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative" 
-                    onclick="openLightbox('src/pictures/project1.jpg', 'Self-Storage Platform UI')">
-                    <img src="src/pictures/project1.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
-                        <span class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">Expand View</span>
-                    </div>
-                </div>
-
-                <!-- Right: Buttons -->
-                <div class="md:w-1/6 flex flex-col items-end gap-3">
-                    <a href="https://gitlab.wethinkco.de/mxkhumajhb024/capstone-project" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="num"><span data-count="15">0</span><span class="suf">+</span></div>
+            <div class="label">Engineers mentored</div>
         </div>
-
-        <!-- Project 2 (Thread Sim) -->
-        <div class="project-card group border-t border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
-            <div class="md:flex justify-between items-start gap-8">
-                
-                <!-- Left: Title & Description -->
-                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
-                    <div>
-                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">Java & Concurrency</span>
-                        <h3 class="text-3xl font-bold mt-4 leading-tight">Thread Simulation</h3>
-                    </div>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
-                        Engineered a real-time simulation using monitors to eliminate race conditions. Designed deadlock-prevention algorithms.
-                    </p>
-                </div>
-
-                <!-- Middle: Interactive Media Container -->
-                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
-                     onclick="openLightbox('src/pictures/project2.jpg', 'Concurrent Thread Simulation')">
-                    <img src="src/pictures/project2.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
-                        <span class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">Expand View</span>
-                    </div>
-                </div>
-
-                <!-- Right: Buttons -->
-                <div class="md:w-1/6 flex flex-col items-end gap-3">
-                    <a href="https://github.com/Mxolisi-Khumalo/Club-Simulation" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="num"><span data-count="30">0</span><span class="suf">%</span></div>
+            <div class="label">Pass-rate uplift</div>
         </div>
-
-        <!-- Project 3 (Shadow Fight) -->
-        <div class="project-card group border-t border-b border-white/20 py-12 cursor-pointer hover:bg-neutral-900 transition-colors">
-            <div class="md:flex justify-between items-start gap-8">
-                
-                <!-- Left: Title & Description -->
-                <div class="md:w-1/3 mb-4 md:mb-0 flex flex-col gap-4">
-                    <div>
-                        <span class="text-xs border border-white/30 rounded-full px-2 py-1 uppercase">HTML5 Canvas & JS</span>
-                        <h3 class="text-3xl font-bold mt-4 leading-tight">Shadow Fight Game</h3>
-                    </div>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
-                        Browser-based 2D fighting game with character selection and AI opponent modes. Implemented custom combat loops.
-                    </p>
-                </div>
-                
-                <!-- Middle: Interactive Media Container (Video Trigger) -->
-                <div class="md:w-1/2 cursor-pointer overflow-hidden rounded-lg mb-4 h-48 md:h-64 relative"
-                     onclick="openLightbox('src/pictures/gameplay.mp4', 'Shadow Fight - Gameplay Demo', true)">
-                    <img src="src/pictures/project3.jpg" alt="Preview" class="project-media w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay">
-                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center pl-1 font-bold shadow-lg">▶</div>
-                    </div>
-                </div>
-
-                <!-- Right: Buttons -->
-                <div class="md:w-1/6 flex flex-col items-end gap-3">
-                    <a href="https://github.com/Mxolisi-Khumalo/Fighting-game#" target="_blank" class="px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase whitespace-nowrap">View Code</a>
-                    <a href="src/sites/fighting_game.html" target="_blank" class="px-4 py-2 bg-white text-black border border-white rounded-full hover:bg-transparent hover:text-white transition-all text-sm uppercase whitespace-nowrap">Play Game</a>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="num"><span data-count="5">0</span><span class="suf">+</span></div>
+            <div class="label">Languages in the toolkit</div>
         </div>
     </section>
 
-    <!-- Recent Activity Ticker -->
-    <section class="py-20 border-b border-white/10 overflow-hidden">
-        <div class="px-6 md:px-20 mb-10 flex justify-between items-end">
-            <h2 class="text-4xl md:text-6xl font-bold">LATEST ACTIVITY</h2>
-            <div class="flex items-center gap-2 text-neutral-500 text-sm uppercase tracking-widest">
-                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Live Feed
-            </div>
-        </div>
-        <div class="scroller w-full">
-            <div class="scroller__inner flex gap-8 pl-6 md:pl-20">
-                <!-- Activity Items -->
-                 <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/deswik.jpg', 'Deswik Office - Roodeport')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/deswik.jpg" class="w-full h-full object-cover" alt="Event">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white border border-white rounded-full px-4 py-1 text-sm uppercase">Expand</span></div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Deswik Office Visit</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">EVENT</span></div>
-                </div>
-                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="window.open('https://youtu.be/066o88cgeR4?si=aasRpQNs9F_N-61Y', '_blank')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/weshare.jpg" class="w-full h-full object-cover" alt="YouTube">
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-16 h-16 bg-white/10 backdrop-blur rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">▶</div></div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">WeShare WebApp Demo</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">YOUTUBE</span></div>
-                </div>
-                 <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/outlier.jpg" class="w-full h-full object-cover" alt="Cert">
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Top 50 AI Brilliance in SA</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span></div>
-                </div>
-                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/portfolio.jpg', 'Portfolio Development')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/portfolio.jpg" class="w-full h-full object-cover" alt="WIP">
-                         <div class="absolute top-4 right-4 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">IN PROGRESS</div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Portfolio Deveopment & Refining</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">DEV LOG</span></div>
-                </div>
-
-                <!-- Duplicate Items for Loop -->
-                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/deswik.jpg', 'Deswik Office - Roodeport')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/deswik.jpg" class="w-full h-full object-cover" alt="Event">
-                         <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="text-white border border-white rounded-full px-4 py-1 text-sm uppercase">Expand</span></div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Deswik Office Visit</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">EVENT</span></div>
-                </div>
-                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="window.open('https://youtu.be/066o88cgeR4?si=aasRpQNs9F_N-61Y', '_blank')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/weshare.jpg" class="w-full h-full object-cover" alt="YouTube">
-                        <div class="absolute inset-0 flex items-center justify-center"><div class="w-16 h-16 bg-white/10 backdrop-blur rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">▶</div></div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">WeShare WebApp Demo</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">YOUTUBE</span></div>
-                </div>
-                 <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/outlier.jpg" class="w-full h-full object-cover" alt="Cert">
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Top 50 AI Brilliance in SA</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">ACHIEVEMENT</span></div>
-                </div>
-                <div class="activity-card w-[400px] flex-shrink-0 cursor-pointer group" onclick="openLightbox('src/pictures/portfolio.jpg', 'Portfolio Development')">
-                    <div class="relative overflow-hidden rounded-lg h-64 border border-white/10">
-                        <img src="src/pictures/portfolio.jpg" class="w-full h-full object-cover" alt="WIP">
-                         <div class="absolute top-4 right-4 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">IN PROGRESS</div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-start"><h4 class="text-xl font-bold">Portfolio Deveopment & Refining</h4><span class="text-xs text-neutral-500 border border-neutral-800 px-2 py-1 rounded">DEV LOG</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Upgraded Lightbox Modal (Supports Video) -->
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex-col items-center justify-center p-4 opacity-0 pointer-events-none" onclick="closeLightbox()">
-        <div class="absolute top-6 right-6 text-white cursor-pointer hover:text-neutral-400 font-bold tracking-widest">CLOSE [ESC]</div>
-        
-        <!-- Image Container -->
-        <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border border-white/10 hidden-media">
-        
-        <!-- Video Container -->
-        <video id="lightbox-video" controls class="max-w-full max-h-[80vh] rounded-lg shadow-2xl border border-white/10 hidden-media">
-            <source id="lightbox-video-source" src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <p id="lightbox-caption" class="text-white mt-4 text-xl font-light tracking-wide"></p>
-    </div>
-
-    <!-- Experience & Education (RESTORED TO ORIGINAL LAYOUT) -->
-    <section class="py-20 px-6 md:px-20 bg-neutral-900 text-black">
-        <div class="grid md:grid-cols-2 gap-12 text-white">
-            <!-- Experience -->
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+        <div class="section-head reveal">
             <div>
-                <h4 class="text-sm uppercase tracking-widest text-neutral-500 mb-8">Professional Experience</h4>
-                
-                <div class="mb-10 group">
-                    <h5 class="text-2xl font-bold">Technical Mentor</h5>
-                    <p class="text-neutral-400 text-sm">WeThinkCode_ | Sep 2025 - Jan 2026</p>
-                    <p class="mt-2 text-neutral-300">Mentored 15+ engineering students, improving pass rates by 30%. Facilitated pair programming and architectural reviews.</p>
+                <p class="eyebrow">// 01 — Profile</p>
+                <h2 class="display-title">The<br>Developer</h2>
+            </div>
+            <span class="section-index">(About)</span>
+        </div>
+
+        <div class="about-grid">
+            <div class="reveal">
+                <p class="about-lead">
+                    I'm a <b>software engineer</b> and <span class="accent">WeThinkCode_</span> alumnus who turns
+                    hard problems into <b>clean, scalable code</b> — and turns junior developers into confident
+                    engineers. I care about <b>the craft</b>, the people, and shipping things that actually work.
+                </p>
+
+                <div class="duo">
+                    <div class="duo-card hover-trigger">
+                        <h4>// In the code</h4>
+                        <p>Full-stack builds, concurrent &amp; multithreaded systems, cloud-native architecture on AWS &amp; Azure, and a healthy obsession with debugging until it's right.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// In the community</h4>
+                        <p>Technical mentor, tutor and campus lead — pair-programming, architectural reviews, and lifting pass rates by growing people, not just grades.</p>
+                    </div>
                 </div>
 
-                <div class="mb-10 group">
-                    <h5 class="text-2xl font-bold">Campus Role Supervisor</h5>
-                    <p class="text-neutral-400 text-sm">WeThinkCode_ | Oct 2025 - Jan 2026</p>
-                    <p class="mt-2 text-neutral-300">Directed operational allocation for 10+ students, ensuring 100% compliance with performance metrics.</p>
-                </div>
-                
-                <div class="mb-10 group">
-                    <h5 class="text-2xl font-bold">Academic Tutor</h5>
-                    <p class="text-neutral-400 text-sm">123tutors | Jun 2023 - Sep 2024</p>
-                    <p class="mt-2 text-neutral-300">Developed personalized study plans resulting in 100% tutored student pass rate.</p>
+                <div class="about-langs">
+                    <span class="chip">English</span>
+                    <span class="chip">isiZulu</span>
+                    <span class="chip">isiXhosa</span>
+                    <span class="chip">OOP</span>
+                    <span class="chip">Concurrency</span>
+                    <span class="chip">Cloud</span>
+                    <span class="chip">Image Processing</span>
                 </div>
             </div>
 
-            <!-- Education -->
+            <div class="about-photo reveal hover-trigger" data-cursor="Mentor">
+                <img src="src/pictures/mentoring.jpg" alt="Mxolisi mentoring">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WORK ===================== -->
+    <section class="section" id="work">
+        <div class="section-head">
             <div>
-                <h4 class="text-sm uppercase tracking-widest text-neutral-500 mb-8">Education & Certs</h4>
-                
-                <div class="mb-8 pb-8 border-b border-white/10">
-                    <h5 class="text-xl font-bold">WeThinkCode_</h5>
-                    <p class="text-neutral-400">Nat. Diploma: Software Development (NQF L6)</p>
-                    <p class="text-sm text-neutral-500">Sep 2024 - Dec 2025</p>
-                </div>
+                <p class="eyebrow">// 02 — Selected work</p>
+                <h2 class="display-title">Built<br>&amp; Shipped</h2>
+            </div>
+            <span class="section-index">(06 projects)</span>
+        </div>
 
-                <div class="mb-8 pb-8 border-b border-white/10">
-                    <h5 class="text-xl font-bold">University of Cape Town</h5>
-                    <p class="text-neutral-400">Undergrad Coursework: IT</p>
-                    <p class="text-sm text-neutral-500">Feb 2020 - Feb 2024</p>
+        <!-- P1 -->
+        <article class="project">
+            <div class="p-index">01</div>
+            <div>
+                <h3 class="p-title">Self-Storage Platform</h3>
+                <div class="p-tags"><span class="p-tag">AWS Lambda</span><span class="p-tag">DynamoDB</span><span class="p-tag">Cognito</span></div>
+            </div>
+            <p class="p-desc">A serverless single-page app letting customers browse units and book instantly — capstone project built on a fully managed AWS backend.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/project1.jpg', 'Self-Storage Platform UI')" data-cursor="Expand">
+                    <img src="src/pictures/project1.jpg" alt="Self-Storage Platform">
+                    <div class="overlay"><span>Expand view</span></div>
                 </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://gitlab.wethinkco.de/mxkhumajhb024/capstone-project" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                </div>
+            </div>
+        </article>
 
-                <div class="space-y-2">
-                    <div class="inline-block px-3 py-1 border border-white/30 rounded-full text-xs uppercase hover:bg-white hover:text-black transition-colors">Microsoft Azure Security</div>
-                    <div class="inline-block px-3 py-1 border border-white/30 rounded-full text-xs uppercase hover:bg-white hover:text-black transition-colors">AWS Cloud Trainee</div>
-                    <a href="src/files/Mxolisi Khumalo Certificate of Completion.pdf-3.pdf" target="_blank" class="inline-block px-3 py-1 border border-white/30 rounded-full text-xs uppercase hover:bg-white hover:text-black transition-colors">Gen AI Certified</a>
+        <!-- P2 -->
+        <article class="project">
+            <div class="p-index">02</div>
+            <div>
+                <h3 class="p-title">Club Simulation</h3>
+                <div class="p-tags"><span class="p-tag">Java</span><span class="p-tag">Multithreading</span><span class="p-tag">Concurrency</span></div>
+            </div>
+            <p class="p-desc">Real-time concurrency simulation using monitors to eliminate race conditions, with deadlock-prevention logic and a live visualization of thread state.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/project2.jpg', 'Club Simulation — Concurrency')" data-cursor="Expand">
+                    <img src="src/pictures/project2.jpg" alt="Club Simulation">
+                    <div class="overlay"><span>Expand view</span></div>
+                </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://github.com/Mxolisi-Khumalo/Club-Simulation" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- P3 -->
+        <article class="project">
+            <div class="p-index">03</div>
+            <div>
+                <h3 class="p-title">Shadow Fight Game</h3>
+                <div class="p-tags"><span class="p-tag">HTML5 Canvas</span><span class="p-tag">JavaScript</span><span class="p-tag">Game AI</span></div>
+            </div>
+            <p class="p-desc">Browser-based 2D fighter with character selection, custom combat loops and an AI opponent mode — playable right in the browser.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/gameplay.mp4', 'Shadow Fight — Gameplay Demo', true)" data-cursor="Play">
+                    <img src="src/pictures/project3.jpg" alt="Shadow Fight Game">
+                    <div class="overlay"><div class="play">▶</div></div>
+                </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://github.com/Mxolisi-Khumalo/Fighting-game" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                    <a href="src/sites/fighting_game.html" target="_blank" rel="noopener" class="btn-pill btn-pill--accent hover-trigger" data-magnetic>Play ▶</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- P4 -->
+        <article class="project">
+            <div class="p-index">04</div>
+            <div>
+                <h3 class="p-title">MonteCarlo Mini</h3>
+                <div class="p-tags"><span class="p-tag">Java</span><span class="p-tag">Fork/Join</span><span class="p-tag">Parallelism</span></div>
+            </div>
+            <p class="p-desc">A parallelized Monte-Carlo estimator built on Java's Fork/Join framework — dividing work across cores for a real speed-up over the serial baseline.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/project2.jpg', 'MonteCarlo Mini — Parallel Estimation')" data-cursor="Expand">
+                    <img src="src/pictures/project2.jpg" alt="MonteCarlo Mini">
+                    <div class="overlay"><span>Expand view</span></div>
+                </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://github.com/Mxolisi-Khumalo/MonteCarloMini" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- P5 -->
+        <article class="project">
+            <div class="p-index">05</div>
+            <div>
+                <h3 class="p-title">Asteroids</h3>
+                <div class="p-tags"><span class="p-tag">Python</span><span class="p-tag">pygame</span><span class="p-tag">OOP</span></div>
+            </div>
+            <p class="p-desc">A classic arcade rebuild in Python &amp; pygame — collision detection, object-oriented game entities and a tight game loop.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/project3.jpg', 'Asteroids — Python / pygame')" data-cursor="Expand">
+                    <img src="src/pictures/project3.jpg" alt="Asteroids">
+                    <div class="overlay"><span>Expand view</span></div>
+                </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://github.com/Mxolisi-Khumalo/Asteroids-game" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- P6 -->
+        <article class="project">
+            <div class="p-index">06</div>
+            <div>
+                <h3 class="p-title">Pixel Manipulation</h3>
+                <div class="p-tags"><span class="p-tag">MIPS Assembly</span><span class="p-tag">Image Processing</span></div>
+            </div>
+            <p class="p-desc">Low-level image processing in MIPS assembly — greyscale conversion and brightness control, working directly with pixel data and registers.</p>
+            <div>
+                <div class="p-media hover-trigger" onclick="openLightbox('src/pictures/project1.jpg', 'Pixel Manipulation — MIPS Assembly')" data-cursor="Expand">
+                    <img src="src/pictures/project1.jpg" alt="Pixel Manipulation">
+                    <div class="overlay"><span>Expand view</span></div>
+                </div>
+                <div class="p-actions" style="margin-top:1rem">
+                    <a href="https://github.com/Mxolisi-Khumalo/Pixel-manipulation" target="_blank" rel="noopener" class="btn-pill hover-trigger" data-magnetic>View Code ↗</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ===================== JOURNEY / MILESTONES ===================== -->
+    <section class="section" id="journey">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">// 03 — Milestones</p>
+                <h2 class="display-title">The<br>Journey</h2>
+            </div>
+            <span class="section-index">(2020 → Now)</span>
+        </div>
+
+        <div class="timeline">
+            <div class="spine"><div class="spine__fill"></div></div>
+
+            <div class="tl-item">
+                <span class="node"></span>
+                <div class="yr">Sep 2025 — Jan 2026</div>
+                <h4>Technical Mentor</h4>
+                <div class="org">WeThinkCode_</div>
+                <p>Mentored 15+ engineering students through pair programming and architectural reviews, helping lift cohort pass rates by ~30%.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="node"></span>
+                <div class="yr">Oct 2025 — Jan 2026</div>
+                <h4>Campus Role Supervisor</h4>
+                <div class="org">WeThinkCode_</div>
+                <p>Directed operational allocation for 10+ students, keeping the team at 100% compliance with performance metrics.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="node"></span>
+                <div class="yr">2024 — 2025</div>
+                <h4>National Diploma · Software Development (NQF L6)</h4>
+                <div class="org">WeThinkCode_</div>
+                <p>Peer-to-peer, project-based engineering education — Java, Python, cloud, concurrency and agile delivery, built entirely around shipping real software.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="node"></span>
+                <div class="yr">Jun 2023 — Sep 2024</div>
+                <h4>Academic Tutor</h4>
+                <div class="org">123tutors</div>
+                <p>Designed personalised study plans that took every tutored student to a 100% pass rate.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="node"></span>
+                <div class="yr">2020 — 2024</div>
+                <h4>Undergraduate Coursework · Information Technology</h4>
+                <div class="org">University of Cape Town</div>
+                <p>Foundations in computer science, systems and software engineering that set the trajectory into professional development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== AWARDS / ACHIEVEMENTS ===================== -->
+    <section class="section" id="awards">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">// 04 — Recognition</p>
+                <h2 class="display-title">Awards &amp;<br>Achievements</h2>
+            </div>
+            <span class="section-index">(Highlights)</span>
+        </div>
+
+        <div class="cards-grid">
+            <div class="award hover-trigger" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')" data-cursor="View">
+                <div><span class="a-kind">Award</span><span class="a-year">2025</span></div>
+                <div>
+                    <div class="a-icon">🏆</div>
+                    <h4>Top 50 AI Brilliance in South Africa</h4>
+                    <p>Recognised among the country's standout emerging AI &amp; tech talent.</p>
+                </div>
+            </div>
+
+            <div class="award hover-trigger">
+                <div><span class="a-kind">Milestone</span><span class="a-year">2026</span></div>
+                <div>
+                    <div class="a-icon">🎓</div>
+                    <h4>WeThinkCode_ Graduate</h4>
+                    <p>Completed the full peer-based software engineering programme (NQF L6).</p>
+                </div>
+            </div>
+
+            <div class="award hover-trigger">
+                <div><span class="a-kind">Impact</span><span class="a-year">2026</span></div>
+                <div>
+                    <div class="a-icon">📈</div>
+                    <h4>+30% Cohort Pass Rate</h4>
+                    <p>Mentoring and pair-programming that measurably raised student outcomes.</p>
+                </div>
+            </div>
+
+            <div class="award hover-trigger" onclick="openLightbox('src/pictures/deswik.jpg', 'Deswik Office Visit — Roodepoort')" data-cursor="View">
+                <div><span class="a-kind">Event</span><span class="a-year">2025</span></div>
+                <div>
+                    <div class="a-icon">🏢</div>
+                    <h4>Deswik Industry Visit</h4>
+                    <p>On-site engineering exposure at Deswik's Roodepoort office.</p>
+                </div>
+            </div>
+
+            <div class="award hover-trigger" onclick="window.open('https://youtu.be/066o88cgeR4', '_blank')" data-cursor="Watch">
+                <div><span class="a-kind">Feature</span><span class="a-year">2025</span></div>
+                <div>
+                    <div class="a-icon">▶</div>
+                    <h4>WeShare WebApp Demo</h4>
+                    <p>Presented a collaborative web application — watch the walkthrough on YouTube.</p>
+                </div>
+            </div>
+
+            <div class="award hover-trigger">
+                <div><span class="a-kind">Community</span><span class="a-year">2023 →</span></div>
+                <div>
+                    <div class="a-icon">🤝</div>
+                    <h4>STEM Mentorship</h4>
+                    <p>Ongoing mentoring of students across programming and STEM subjects.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-neutral-950 -z-10"></div>
-        <p class="text-neutral-500 mb-4">READY TO COLLABORATE?</p>
-        <a href="mailto:mxolisikhumalo611@gmail.com" class="hover-trigger text-4xl md:text-7xl font-bold hover:text-neutral-400 transition-colors text-center leading-tight">mxolisikhumalo611<br>@gmail.com</a>
-        <div class="absolute bottom-10 flex justify-between w-full px-6 md:px-20 text-xs text-neutral-600 uppercase">
-            <span>© 2025 Mxolisi Khumalo</span>
-            <span>071 614 7319</span>
+    <!-- ===================== QUALIFICATIONS & CERTS ===================== -->
+    <section class="section" id="certs">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">// 05 — Credentials</p>
+                <h2 class="display-title">Qualifications<br>&amp; Certifications</h2>
+            </div>
+            <span class="section-index">(Verified)</span>
         </div>
+
+        <div class="cert-list reveal">
+            <a class="cert hover-trigger" href="src/files/Mxolisi Khumalo Certificate of Completion.pdf-3.pdf" target="_blank" rel="noopener">
+                <div class="c-main">
+                    <span class="c-name">Generative AI — Certified</span>
+                    <span class="c-issuer">Certificate of Completion</span>
+                </div>
+                <span class="c-arrow">View ↗</span>
+            </a>
+            <div class="cert hover-trigger">
+                <div class="c-main">
+                    <span class="c-name">Microsoft Azure Security</span>
+                    <span class="c-issuer">Microsoft</span>
+                </div>
+                <span class="c-arrow">•</span>
+            </div>
+            <div class="cert hover-trigger">
+                <div class="c-main">
+                    <span class="c-name">AWS Cloud Trainee</span>
+                    <span class="c-issuer">Amazon Web Services</span>
+                </div>
+                <span class="c-arrow">•</span>
+            </div>
+            <div class="cert hover-trigger">
+                <div class="c-main">
+                    <span class="c-name">National Diploma · Software Development (NQF L6)</span>
+                    <span class="c-issuer">WeThinkCode_ · 2024–2025</span>
+                </div>
+                <span class="c-arrow">•</span>
+            </div>
+            <div class="cert hover-trigger">
+                <div class="c-main">
+                    <span class="c-name">Undergraduate Coursework · Information Technology</span>
+                    <span class="c-issuer">University of Cape Town · 2020–2024</span>
+                </div>
+                <span class="c-arrow">•</span>
+            </div>
+            <div class="cert hover-trigger">
+                <div class="c-main">
+                    <span class="c-name">Trilingual — EN · isiZulu · isiXhosa</span>
+                    <span class="c-issuer">Languages</span>
+                </div>
+                <span class="c-arrow">•</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== LATEST ACTIVITY ===================== -->
+    <section class="section section--tight" id="activity" style="padding-left:0;padding-right:0;">
+        <div class="section-head" style="padding: 0 clamp(1.25rem,4vw,5rem);">
+            <div>
+                <p class="eyebrow">// 06 — Live feed</p>
+                <h2 class="display-title">Latest<br>Activity</h2>
+            </div>
+            <div class="hero-meta" style="margin:0;"><span class="avail"><span class="dot-live"></span> Live</span></div>
+        </div>
+
+        <div class="scroller">
+            <div class="scroller__inner">
+                <!-- set A -->
+                <div class="activity" onclick="openLightbox('src/pictures/deswik.jpg', 'Deswik Office Visit — Roodepoort')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/deswik.jpg" alt="Deswik visit"><span class="a-badge">Event</span></div>
+                    <div class="a-cap"><h4>Deswik Office Visit</h4></div>
+                </div>
+                <div class="activity" onclick="window.open('https://youtu.be/066o88cgeR4','_blank')" data-cursor="Watch">
+                    <div class="a-media"><img src="src/pictures/weshare.jpg" alt="WeShare demo"><span class="a-badge">YouTube</span><div class="a-play"><span>▶</span></div></div>
+                    <div class="a-cap"><h4>WeShare WebApp Demo</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/outlier.jpg" alt="Top 50 AI"><span class="a-badge">Achievement</span></div>
+                    <div class="a-cap"><h4>Top 50 AI Brilliance in SA</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/mentoring.jpg', 'Mentoring session')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/mentoring.jpg" alt="Mentoring"><span class="a-badge">Mentorship</span></div>
+                    <div class="a-cap"><h4>Mentoring the next cohort</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/portfolio.jpg', 'Portfolio development')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/portfolio.jpg" alt="Portfolio WIP"><span class="a-badge">Dev Log</span></div>
+                    <div class="a-cap"><h4>Portfolio v2 — Refining</h4></div>
+                </div>
+                <!-- set B (duplicate for seamless loop) -->
+                <div class="activity" onclick="openLightbox('src/pictures/deswik.jpg', 'Deswik Office Visit — Roodepoort')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/deswik.jpg" alt="Deswik visit"><span class="a-badge">Event</span></div>
+                    <div class="a-cap"><h4>Deswik Office Visit</h4></div>
+                </div>
+                <div class="activity" onclick="window.open('https://youtu.be/066o88cgeR4','_blank')" data-cursor="Watch">
+                    <div class="a-media"><img src="src/pictures/weshare.jpg" alt="WeShare demo"><span class="a-badge">YouTube</span><div class="a-play"><span>▶</span></div></div>
+                    <div class="a-cap"><h4>WeShare WebApp Demo</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/outlier.jpg" alt="Top 50 AI"><span class="a-badge">Achievement</span></div>
+                    <div class="a-cap"><h4>Top 50 AI Brilliance in SA</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/mentoring.jpg', 'Mentoring session')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/mentoring.jpg" alt="Mentoring"><span class="a-badge">Mentorship</span></div>
+                    <div class="a-cap"><h4>Mentoring the next cohort</h4></div>
+                </div>
+                <div class="activity" onclick="openLightbox('src/pictures/portfolio.jpg', 'Portfolio development')" data-cursor="Expand">
+                    <div class="a-media"><img src="src/pictures/portfolio.jpg" alt="Portfolio WIP"><span class="a-badge">Dev Log</span></div>
+                    <div class="a-cap"><h4>Portfolio v2 — Refining</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TOOLBOX ===================== -->
+    <section class="section" id="stack">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">// 07 — Toolbox</p>
+                <h2 class="display-title">The<br>Stack</h2>
+            </div>
+            <span class="section-index">(Daily drivers)</span>
+        </div>
+
+        <div class="tool-grid reveal">
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Java</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Python</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">C#</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">JavaScript</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">SQL</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Spring Boot</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">AWS</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Azure</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Docker</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Git</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">Maven</span></div>
+            <div class="tool"><span class="t-dot"></span><span class="t-name">IntelliJ</span></div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="contact">
+        <p class="f-eyebrow">Ready to build something?</p>
+        <a href="mailto:mxolisikhumalo611@gmail.com" class="f-mail hover-trigger" data-magnetic>Let's talk ↗</a>
+        <div class="f-bottom">
+            <span>© <span data-year>2026</span> Mxolisi Khumalo</span>
+            <span>Springs · Johannesburg, ZA</span>
+            <span>+27 71 614 7319</span>
+        </div>
+        <div class="f-huge">MK.DEV</div>
     </footer>
+
+    <!-- ===================== LIGHTBOX ===================== -->
+    <div id="lightbox">
+        <div class="lb-close hover-trigger">Close [Esc]</div>
+        <img id="lightbox-img" class="hidden-media" src="" alt="">
+        <video id="lightbox-video" class="hidden-media" controls playsinline>
+            <source id="lightbox-video-source" src="" type="video/mp4">
+        </video>
+        <p id="lightbox-caption" class="lb-caption"></p>
+    </div>
 
     <script src="src/js/app.js"></script>
 </body>

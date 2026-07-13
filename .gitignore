@@ -1,0 +1,15 @@
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Tooling
+.claude/
+node_modules/
+*.tmp
+
+# Raw source assets (not used by the live site; optimized copies live in src/pictures/).
+# Kept local to keep the repo lean. Remove these lines to commit the originals.
+src/files/Photos of me/
+src/files/LinkedIn posts pictures/
+src/files/LinkedIn Posts Information.docx

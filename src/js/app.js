@@ -302,5 +302,77 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLight
    ------------------------------------------------------------ */
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
+/* ------------------------------------------------------------
+   13. Vision parallax background
+   ------------------------------------------------------------ */
+if (window.gsap && window.ScrollTrigger && !prefersReduced) {
+    const vbg = document.querySelector('.vision__bg');
+    if (vbg) {
+        gsap.fromTo(vbg, { yPercent: -12 }, {
+            yPercent: 12, ease: 'none',
+            scrollTrigger: { trigger: '.vision', start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+    }
+    // Generic data-parallax elements (e.g. editorial image)
+    gsap.utils.toArray('[data-parallax]').forEach(el => {
+        const amt = parseFloat(el.getAttribute('data-parallax')) || 0.1;
+        gsap.fromTo(el, { yPercent: -amt * 100 }, {
+            yPercent: amt * 100, ease: 'none',
+            scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+    });
+}
+
+/* ------------------------------------------------------------
+   14. Field Notes — horizontal scroll (pin) with fallback
+   ------------------------------------------------------------ */
+(function fieldNotes() {
+    const section = document.getElementById('notes');
+    const viewport = document.getElementById('fnViewport');
+    const track = document.getElementById('fnTrack');
+    const bar = document.getElementById('fnBar');
+    if (!section || !viewport || !track) return;
+
+    const canPin = window.gsap && window.ScrollTrigger && !prefersReduced && finePointer && window.innerWidth > 820;
+
+    if (!canPin) {
+        // Native horizontal scroll fallback (touch / reduced motion / small screens)
+        viewport.classList.add('is-native');
+        if (bar) {
+            const update = () => {
+                const max = track.scrollWidth - viewport.clientWidth;
+                bar.style.width = (max > 0 ? (viewport.scrollLeft / max) * 100 : 0) + '%';
+            };
+            viewport.addEventListener('scroll', update, { passive: true });
+            update();
+        }
+        return;
+    }
+
+    const getAmount = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+    gsap.to(track, {
+        x: () => -getAmount(),
+        ease: 'none',
+        scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => '+=' + getAmount(),
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => { if (bar) bar.style.width = (self.progress * 100) + '%'; }
+        }
+    });
+})();
+
+/* ------------------------------------------------------------
+   15. Cert categories reveal
+   ------------------------------------------------------------ */
+if (window.gsap && window.ScrollTrigger && !prefersReduced) {
+    gsap.utils.toArray('.cert-cat').forEach((cat, i) => {
+        gsap.from(cat, { scrollTrigger: { trigger: cat, start: 'top 90%' }, opacity: 0, y: 40, duration: 0.8, ease: 'power3.out', delay: (i % 2) * 0.08 });
+    });
+}
+
 /* Refresh ScrollTrigger once everything (images) settled */
 window.addEventListener('load', () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });

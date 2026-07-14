@@ -84,10 +84,12 @@
             </div>
 
             <div class="portrait-wrap">
-                <div class="portrait hover-trigger" data-cursor="Hi 👋">
+                <div class="portrait" id="heroPortrait">
                     <div class="frame"></div>
-                    <img src="src/pictures/hero-portrait.jpg" alt="Mxolisi Khumalo">
+                    <div class="ph ph-base"><img src="src/pictures/hero-portrait.jpg" alt="Mxolisi Khumalo"></div>
+                    <div class="ph ph-reveal"><img src="src/pictures/editorial.jpg" alt="Mxolisi Khumalo"></div>
                     <span class="tag">// developer · cloud · mentor</span>
+                    <span class="hint">Move cursor ✦</span>
                 </div>
             </div>
         </div>
@@ -116,16 +118,16 @@
     <!-- ===================== STATS ===================== -->
     <section class="stats" id="stats">
         <div class="stat">
-            <div class="num"><span data-count="38">0</span></div>
-            <div class="label">Projects shipped</div>
+            <div class="num"><span data-count="60">0</span><span class="suf">+</span></div>
+            <div class="label">Projects · GitHub + GitLab</div>
         </div>
         <div class="stat">
             <div class="num"><span data-count="115">0</span><span class="suf">+</span></div>
             <div class="label">Students mentored</div>
         </div>
         <div class="stat">
-            <div class="num"><span data-count="80">0</span><span class="suf">%</span></div>
-            <div class="label">Bootcamp pass rate</div>
+            <div class="num"><span data-count="6">0</span><span class="suf">+</span></div>
+            <div class="label">Years of programming</div>
         </div>
         <div class="stat">
             <div class="num"><span data-count="21">0</span><span class="suf">+</span></div>
@@ -153,14 +155,14 @@
         </div>
     </section>
 
-    <!-- ===================== ABOUT ===================== -->
+    <!-- ===================== 01 · THE DEVELOPER ===================== -->
     <section class="section" id="about">
         <div class="section-head reveal">
             <div>
                 <p class="eyebrow">// 01 — Profile</p>
                 <h2 class="display-title">The<br>Developer</h2>
             </div>
-            <span class="section-index">(About)</span>
+            <span class="section-index">(Who I am)</span>
         </div>
 
         <div class="about-grid">
@@ -174,12 +176,12 @@
 
                 <div class="duo">
                     <div class="duo-card hover-trigger">
-                        <h4>// In the code</h4>
+                        <h4>// The craft</h4>
                         <p>Full-stack builds, concurrent &amp; multithreaded systems, cloud-native architecture on AWS &amp; Azure, and a healthy obsession with debugging until it's right.</p>
                     </div>
                     <div class="duo-card hover-trigger">
-                        <h4>// In the community</h4>
-                        <p>Technical mentor, tutor and campus supervisor — pair-programming, architectural reviews, training facilitators and lifting pass rates by growing people.</p>
+                        <h4>// The standard</h4>
+                        <p>Clean, readable code written to team standards, sharpened through code reviews and peer knowledge-sharing — currently across the stack at ActiveOps.</p>
                     </div>
                 </div>
 
@@ -194,8 +196,90 @@
                 </div>
             </div>
 
-            <div class="about-photo reveal hover-trigger" data-cursor="Hey">
-                <img src="src/pictures/about-portrait.jpg" alt="Mxolisi Khumalo portrait">
+            <div class="about-photo reveal hover-trigger" data-cursor="Dev">
+                <img src="src/pictures/dev-developer.jpg" alt="Mxolisi Khumalo — developer">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 02 · THE MENTOR ===================== -->
+    <section class="section" id="mentor">
+        <div class="section-head reveal">
+            <div>
+                <p class="eyebrow">// 02 — Profile</p>
+                <h2 class="display-title">The<br>Mentor</h2>
+            </div>
+            <span class="section-index">(Growing people)</span>
+        </div>
+
+        <div class="about-grid about-grid--rev">
+            <div class="reveal">
+                <p class="about-lead">
+                    I don't just ship code — I <b>grow the engineers who write it</b>. Mentoring is where the
+                    craft meets people, and it's some of the <span class="accent">most rewarding work I do</span>.
+                </p>
+
+                <div class="duo">
+                    <div class="duo-card hover-trigger">
+                        <h4>// In the bootcamps</h4>
+                        <p>Mentored 115+ prospective students through their final projects and reviewed 115+ more — breaking hard concepts into clear, accessible steps and giving feedback on functionality, code quality and collaboration.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// At WeThinkCode_</h4>
+                        <p>Stepped up as a Technical Mentor — guiding students through pair programming and architectural reviews, and supervising campus roles as the liaison to project management.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// Independently</h4>
+                        <p>An independent software-development &amp; STEM mentor and tutor, from high-school to university level — building bespoke resources and personalised study plans that lift confidence and results.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// The impact</h4>
+                        <p>Around 80% of the students I mentored passed their bootcamp tests — many of them completely new to programming when they started.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-photo about-photo--wide reveal hover-trigger" data-cursor="Teach">
+                <img src="src/pictures/dev-mentor.jpg" alt="Mxolisi Khumalo mentoring at the whiteboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 03 · THE STUDENT ===================== -->
+    <section class="section" id="student">
+        <div class="section-head reveal">
+            <div>
+                <p class="eyebrow">// 03 — Profile</p>
+                <h2 class="display-title">The<br>Student</h2>
+            </div>
+            <span class="section-index">(Always learning)</span>
+        </div>
+
+        <div class="about-grid">
+            <div class="reveal">
+                <p class="about-lead">
+                    I'm a <b>continuous learner</b> — my path has been anything but linear, and every step
+                    has added a new tool to the kit. <span class="accent">The learning never really stops.</span>
+                </p>
+
+                <div class="duo">
+                    <div class="duo-card hover-trigger">
+                        <h4>// University of Cape Town</h4>
+                        <p>Began with a BSc in Information Technology (2020–2024) — foundations in computer science, systems and software engineering.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// WeThinkCode_</h4>
+                        <p>A National Diploma in Software Development, NQF L6 (2024–2025) — peer-to-peer, fully project-based, built around shipping real software in Java, Python, cloud and concurrency.</p>
+                    </div>
+                    <div class="duo-card hover-trigger">
+                        <h4>// Ever since</h4>
+                        <p>21+ certifications and counting — C# &amp; .NET, SQL &amp; data, cloud &amp; DevOps, React, testing/QA, Scrum and Generative AI. See them all in <a href="#certs" class="accent">Credentials</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-photo reveal hover-trigger" data-cursor="Learn">
+                <img src="src/pictures/dev-student.jpg" alt="Mxolisi Khumalo — student at WeThinkCode_">
             </div>
         </div>
     </section>
@@ -204,7 +288,7 @@
     <section class="section" id="work">
         <div class="section-head">
             <div>
-                <p class="eyebrow">// 02 — Selected work</p>
+                <p class="eyebrow">// 04 — Selected work</p>
                 <h2 class="display-title">Built<br>&amp; Shipped</h2>
             </div>
             <span class="section-index">(06 projects)</span>
@@ -326,82 +410,105 @@
         </article>
     </section>
 
-    <!-- ===================== JOURNEY / MILESTONES ===================== -->
-    <section class="section" id="journey">
-        <div class="section-head">
+    <!-- ===================== 05 · JOURNEY (horizontal float) ===================== -->
+    <section class="journey-h" id="journey">
+        <div class="jr-head section-head">
             <div>
-                <p class="eyebrow">// 03 — Milestones</p>
+                <p class="eyebrow">// 05 — Milestones</p>
                 <h2 class="display-title">The<br>Journey</h2>
             </div>
-            <span class="section-index">(2015 → Now)</span>
+            <span class="section-index">(2015 → Now · scroll →)</span>
         </div>
 
-        <div class="timeline">
-            <div class="spine"><div class="spine__fill"></div></div>
+        <div class="jr-viewport" id="jrViewport">
+            <div class="jr-track" id="jrTrack">
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Mar 2026 — Present</div>
-                <h4>Technology Associate</h4>
-                <div class="org">ActiveOps · YES Programme</div>
-                <p>Selected onto a structured software-delivery training programme, building a broad technical foundation across the SDLC before specialising in Development — contributing to feature development, writing clean code to team standards, and taking part in code reviews and peer knowledge-sharing.</p>
-            </div>
+                <article class="jr-item jr-item--tall hover-trigger" data-cursor="2015">
+                    <div class="jr-media"><span class="jr-num">01</span><img src="src/pictures/ms-nsc.jpg" alt="National Senior Certificate"></div>
+                    <div class="jr-cap">
+                        <div class="yr">2015 — 2019</div>
+                        <h4>National Senior Certificate</h4>
+                        <div class="org">Zimisele Secondary School</div>
+                        <p>Where the curiosity for building things — and solving problems — first took hold.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Sep 2025 — Jan 2026</div>
-                <h4>Technical Mentor</h4>
-                <div class="org">WeThinkCode_</div>
-                <p>Guided engineering students through pair programming and architectural reviews, aiming to support others on journeys much like my own and give back to the environment I grew in.</p>
-            </div>
+                <article class="jr-item jr-item--tall hover-trigger" data-cursor="2020">
+                    <div class="jr-media"><span class="jr-num">02</span><img src="src/pictures/ms-bsc.jpg" alt="BSc at University of Cape Town"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Feb 2020 — Feb 2024</div>
+                        <h4>BSc · Information Technology</h4>
+                        <div class="org">University of Cape Town</div>
+                        <p>Foundations in computer science, systems and software engineering — long nights, code and a city view.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Oct 2025 — Jan 2026</div>
-                <h4>Campus Role Supervisor</h4>
-                <div class="org">WeThinkCode_</div>
-                <p>Directed the operational allocation and supervision of the student workforce — workforce oversight at 100% compliance, training &amp; development, scheduling and reporting, and conflict resolution as the liaison to Project Management.</p>
-            </div>
+                <article class="jr-item jr-item--tall hover-trigger" data-cursor="2023">
+                    <div class="jr-media"><span class="jr-num">03</span><img src="src/pictures/ms-tutor.png" alt="Tutor at 123tutors"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Jun 2023 — Sep 2024</div>
+                        <h4>Tutor</h4>
+                        <div class="org">123tutors</div>
+                        <p>Guided high-school to university students in a hybrid environment — bespoke resources and study plans that lifted results.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Sep 2024 — Dec 2025</div>
-                <h4>National Diploma · Software Development</h4>
-                <div class="org">WeThinkCode_ · NQF L6</div>
-                <p>Peer-to-peer, project-based engineering education — Java, Python, cloud, concurrency and agile delivery, built entirely around shipping real software.</p>
-            </div>
+                <article class="jr-item jr-item--tall hover-trigger" data-cursor="2024">
+                    <div class="jr-media"><span class="jr-num">04</span><img src="src/pictures/ms-diploma.jpg" alt="National Diploma at WeThinkCode_"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Sep 2024 — Dec 2025</div>
+                        <h4>National Diploma · Software Development</h4>
+                        <div class="org">WeThinkCode_ · NQF L6</div>
+                        <p>Peer-to-peer, fully project-based engineering — Java, Python, cloud and concurrency, built around shipping real software.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Jun 2023 — Sep 2024</div>
-                <h4>Tutor</h4>
-                <div class="org">123tutors</div>
-                <p>Guided high-school to 2nd-year university students through complex subjects in a hybrid online/in-person environment, building bespoke resources, video tutorials and personalised study plans that lifted performance and confidence.</p>
-            </div>
+                <article class="jr-item jr-item--wide hover-trigger" data-cursor="2025">
+                    <div class="jr-media"><span class="jr-num">05</span><img src="src/pictures/ms-mentor.jpg" alt="Technical Mentor at WeThinkCode_"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Sep 2025 — Jan 2026</div>
+                        <h4>Technical Mentor</h4>
+                        <div class="org">WeThinkCode_</div>
+                        <p>Guided engineering students through pair programming and architectural reviews — giving back to the environment I grew in.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">Feb 2020 — Feb 2024</div>
-                <h4>BSc · Information Technology</h4>
-                <div class="org">University of Cape Town</div>
-                <p>Foundations in computer science, systems and software engineering that set the trajectory into professional development.</p>
-            </div>
+                <article class="jr-item jr-item--tall hover-trigger" data-cursor="2025">
+                    <div class="jr-media"><span class="jr-num">06</span><img src="src/pictures/ms-supervisor.jpg" alt="Campus Role Supervisor at WeThinkCode_"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Oct 2025 — Jan 2026</div>
+                        <h4>Campus Role Supervisor</h4>
+                        <div class="org">WeThinkCode_</div>
+                        <p>Directed the student workforce at 100% compliance — training, scheduling, reporting and conflict resolution as liaison to project management.</p>
+                    </div>
+                </article>
 
-            <div class="tl-item">
-                <span class="node"></span>
-                <div class="yr">2015 — 2019</div>
-                <h4>National Senior Certificate</h4>
-                <div class="org">Zimisele Secondary School</div>
-                <p>Where the curiosity for building things — and solving problems — first took hold.</p>
+                <article class="jr-item jr-item--wide hover-trigger" data-cursor="2026">
+                    <div class="jr-media"><span class="jr-num">07</span><img src="src/pictures/ms-associate.jpg" alt="Technology Associate at ActiveOps"></div>
+                    <div class="jr-cap">
+                        <div class="yr">Mar 2026 — Present</div>
+                        <h4>Technology Associate</h4>
+                        <div class="org">ActiveOps · YES Programme</div>
+                        <p>Selected onto a structured software-delivery programme across the full SDLC — feature development, clean code to team standards, code reviews and peer knowledge-sharing.</p>
+                    </div>
+                </article>
+
+                <div class="jr-item jr-end">
+                    <p class="eyebrow">// To be continued</p>
+                    <h3>The story<br>continues.</h3>
+                    <p>Still building, still mentoring, still learning — the next milestone is always in progress.</p>
+                </div>
+
             </div>
         </div>
+        <div class="fn-progress"><div class="fn-progress__bar" id="jrBar"></div></div>
     </section>
 
     <!-- ===================== FIELD NOTES (horizontal scroll) ===================== -->
     <section class="fieldnotes" id="notes">
         <div class="fn-head section-head">
             <div>
-                <p class="eyebrow">// 04 — Off the clock</p>
+                <p class="eyebrow">// 06 — Off the clock</p>
                 <h2 class="display-title">Field<br>Notes</h2>
             </div>
             <span class="section-index">(Events · Mentoring · Community)</span>
@@ -410,7 +517,7 @@
         <div class="fn-viewport" id="fnViewport">
             <div class="fn-track" id="fnTrack">
 
-                <article class="fn-card hover-trigger" onclick="openLightbox('src/pictures/note-mentor.jpg', 'Stepping up as Technical Mentor — WeThinkCode_')" data-cursor="Read">
+                <article class="fn-card hover-trigger" onclick="openGallery('mentor')" data-cursor="View">
                     <div class="fn-card__media">
                         <img src="src/pictures/note-mentor.jpg" alt="Teaching at the whiteboard">
                         <span class="fn-card__badge">Milestone</span>
@@ -422,7 +529,7 @@
                     </div>
                 </article>
 
-                <article class="fn-card hover-trigger" onclick="openLightbox('src/pictures/note-bootcamp.jpg', 'Mentoring 115+ students through their final bootcamp project')" data-cursor="Read">
+                <article class="fn-card hover-trigger" onclick="openGallery('bootcamp')" data-cursor="View">
                     <div class="fn-card__media">
                         <img src="src/pictures/note-bootcamp.jpg" alt="Mentoring students in the lab">
                         <span class="fn-card__badge">Mentorship</span>
@@ -434,7 +541,7 @@
                     </div>
                 </article>
 
-                <article class="fn-card hover-trigger" onclick="openLightbox('src/pictures/note-microsoft.jpg', 'Microsoft South Africa — AI Skilling Day, Gallagher Convention')" data-cursor="Read">
+                <article class="fn-card hover-trigger" onclick="openGallery('microsoft')" data-cursor="View">
                     <div class="fn-card__media">
                         <img src="src/pictures/note-microsoft.jpg" alt="Microsoft AI Skilling Day">
                         <span class="fn-card__badge">Event</span>
@@ -446,7 +553,7 @@
                     </div>
                 </article>
 
-                <article class="fn-card hover-trigger" onclick="openLightbox('src/pictures/note-sage.jpg', 'Unlocking AI: Learning &amp; Career Pathways — hosted by Sage')" data-cursor="Read">
+                <article class="fn-card hover-trigger" onclick="openGallery('sage')" data-cursor="View">
                     <div class="fn-card__media">
                         <img src="src/pictures/note-sage.jpg" alt="Sage AI session">
                         <span class="fn-card__badge">Event</span>
@@ -458,7 +565,7 @@
                     </div>
                 </article>
 
-                <article class="fn-card hover-trigger" onclick="openLightbox('src/pictures/note-momentum.jpg', 'TechTalent Youth Day — Momentum Group, Centurion')" data-cursor="Read">
+                <article class="fn-card hover-trigger" onclick="openGallery('momentum')" data-cursor="View">
                     <div class="fn-card__media">
                         <img src="src/pictures/note-momentum.jpg" alt="Momentum TechTalent Youth Day">
                         <span class="fn-card__badge">Event</span>
@@ -480,15 +587,16 @@
     <section class="section" id="awards">
         <div class="section-head">
             <div>
-                <p class="eyebrow">// 05 — Recognition</p>
+                <p class="eyebrow">// 07 — Recognition</p>
                 <h2 class="display-title">Awards &amp;<br>Achievements</h2>
             </div>
             <span class="section-index">(Highlights)</span>
         </div>
 
         <div class="cards-grid">
-            <div class="award hover-trigger" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')" data-cursor="View">
-                <div><span class="a-kind">Award</span><span class="a-year">2025</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openLightbox('src/pictures/outlier.jpg', 'Top 50 AI Brilliance in South Africa')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/outlier.jpg" alt="Top 50 AI Brilliance"></div>
+                <span class="a-kind">Award</span><span class="a-year">2025</span>
                 <div>
                     <div class="a-icon">🏆</div>
                     <h4>Top 50 AI Brilliance in South Africa</h4>
@@ -496,8 +604,9 @@
                 </div>
             </div>
 
-            <div class="award hover-trigger">
-                <div><span class="a-kind">Milestone</span><span class="a-year">2026</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openGallery('associate')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/ms-associate.jpg" alt="ActiveOps team"></div>
+                <span class="a-kind">Milestone</span><span class="a-year">2026</span>
                 <div>
                     <div class="a-icon">🚀</div>
                     <h4>Selected · ActiveOps YES Programme</h4>
@@ -505,8 +614,9 @@
                 </div>
             </div>
 
-            <div class="award hover-trigger">
-                <div><span class="a-kind">Milestone</span><span class="a-year">2025</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openLightbox('src/pictures/ms-diploma.jpg', 'WeThinkCode_ Graduate — National Diploma in Software Development')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/ms-diploma.jpg" alt="WeThinkCode graduate"></div>
+                <span class="a-kind">Milestone</span><span class="a-year">2025</span>
                 <div>
                     <div class="a-icon">🎓</div>
                     <h4>WeThinkCode_ Graduate</h4>
@@ -514,8 +624,9 @@
                 </div>
             </div>
 
-            <div class="award hover-trigger" onclick="openLightbox('src/pictures/note-bootcamp.jpg', 'Mentoring 115+ students to an ~80% pass rate')" data-cursor="View">
-                <div><span class="a-kind">Impact</span><span class="a-year">2025</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openGallery('bootcamp')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/events/bootcamp-1.jpg" alt="Mentoring students"></div>
+                <span class="a-kind">Impact</span><span class="a-year">2025</span>
                 <div>
                     <div class="a-icon">📈</div>
                     <h4>115+ Students Mentored</h4>
@@ -523,17 +634,19 @@
                 </div>
             </div>
 
-            <div class="award hover-trigger">
-                <div><span class="a-kind">Craft</span><span class="a-year">2024 — 25</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openGallery('mentor')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/dev-mentor.jpg" alt="Teaching at the whiteboard"></div>
+                <span class="a-kind">Craft</span><span class="a-year">2024 — 25</span>
                 <div>
                     <div class="a-icon">⚙️</div>
-                    <h4>38 Projects · 16 Bootcamps</h4>
-                    <p>Shipped 38 projects and mentored 16 bootcamps across one intense year of building.</p>
+                    <h4>60+ Projects · 16 Bootcamps</h4>
+                    <p>Shipped 60+ projects across GitHub &amp; GitLab and mentored 16 bootcamps in one intense year.</p>
                 </div>
             </div>
 
-            <div class="award hover-trigger">
-                <div><span class="a-kind">Community</span><span class="a-year">2023 →</span></div>
+            <div class="award has-thumb hover-trigger" onclick="openLightbox('src/pictures/ms-mentor.jpg', 'Community &amp; STEM mentoring')" data-cursor="View">
+                <div class="a-thumb"><img src="src/pictures/ms-mentor.jpg" alt="Community mentoring"></div>
+                <span class="a-kind">Community</span><span class="a-year">2023 →</span>
                 <div>
                     <div class="a-icon">🤝</div>
                     <h4>Mentorship &amp; Tutoring</h4>
@@ -547,7 +660,7 @@
     <section class="section" id="certs">
         <div class="section-head">
             <div>
-                <p class="eyebrow">// 06 — Credentials</p>
+                <p class="eyebrow">// 08 — Credentials</p>
                 <h2 class="display-title">Qualifications<br>&amp; Certifications</h2>
             </div>
             <span class="cert-count">21+ certifications · tap to view</span>
@@ -580,6 +693,20 @@
             <div class="cert-cat">
                 <h4>// Cloud &amp; DevOps <span class="cnt">03</span></h4>
                 <a class="cert-row hover-trigger" target="_blank" rel="noopener" href="src/files/Certificates/CertificateOfCompletion_Azure%20DevOps%20for%20Beginners.pdf"><span class="cr-name">Azure DevOps for Beginners</span><span class="cr-arrow">Certificate</span></a>
+
+                <!-- ============================================================
+                     ADD A CERTIFICATE LINK (for credentials without a file yet)
+                     To make a row clickable, change <div class="cert-row"> to:
+                         <a class="cert-row hover-trigger" target="_blank" rel="noopener"
+                            href="src/files/Certificates/YOUR-FILE.pdf">
+                     Put the PDF in  src/files/Certificates/  and replace spaces in the
+                     filename with %20 in the href. Then change the label from
+                     the issuer (e.g. "Microsoft") to "Certificate".
+                     Example:
+                     <a class="cert-row hover-trigger" target="_blank" rel="noopener"
+                        href="src/files/Certificates/Azure%20Security.pdf">
+                        <span class="cr-name">Azure Security …</span><span class="cr-arrow">Certificate</span></a>
+                     ============================================================ -->
                 <div class="cert-row"><span class="cr-name">Configure &amp; Manage Security Monitoring &amp; Automation · Azure</span><span class="cr-arrow">Microsoft</span></div>
                 <div class="cert-row"><span class="cr-name">AWS Cloud Computing · Trainee</span><span class="cr-arrow">AWS</span></div>
             </div>
@@ -610,44 +737,24 @@
         </div>
     </section>
 
-    <!-- ===================== GALLERY WALL ===================== -->
-    <section class="gallery" id="gallery" aria-label="Photo gallery">
-        <div class="gal-row gal-row--a">
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/hero-portrait.jpg','Mxolisi Khumalo')" data-cursor="Expand"><img src="src/pictures/hero-portrait.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/note-mentor.jpg','At the whiteboard')" data-cursor="Expand"><img src="src/pictures/note-mentor.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/offclock.jpg','Off the clock')" data-cursor="Expand"><img src="src/pictures/offclock.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/note-bootcamp.jpg','Bootcamp mentoring')" data-cursor="Expand"><img src="src/pictures/note-bootcamp.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/editorial.jpg','Suited up')" data-cursor="Expand"><img src="src/pictures/editorial.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/note-sage.jpg','Sage AI session')" data-cursor="Expand"><img src="src/pictures/note-sage.jpg" alt=""></div>
-            <!-- duplicate -->
-            <div class="gal-item" onclick="openLightbox('src/pictures/hero-portrait.jpg','Mxolisi Khumalo')"><img src="src/pictures/hero-portrait.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/note-mentor.jpg','At the whiteboard')"><img src="src/pictures/note-mentor.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/offclock.jpg','Off the clock')"><img src="src/pictures/offclock.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/note-bootcamp.jpg','Bootcamp mentoring')"><img src="src/pictures/note-bootcamp.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/editorial.jpg','Suited up')"><img src="src/pictures/editorial.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/note-sage.jpg','Sage AI session')"><img src="src/pictures/note-sage.jpg" alt=""></div>
+    <!-- ===================== FAN GALLERY ===================== -->
+    <section class="fan-section" id="gallery" aria-label="Photo gallery">
+        <div class="fan" id="fan">
+            <div class="fan-item fan-item--l3 hover-trigger" onclick="openLightbox('src/pictures/note-microsoft.jpg','Microsoft AI Skilling Day')"><div class="fan-inner"><img src="src/pictures/note-microsoft.jpg" alt=""></div></div>
+            <div class="fan-item fan-item--r3 hover-trigger" onclick="openLightbox('src/pictures/editorial.jpg','Suited up')"><div class="fan-inner"><img src="src/pictures/editorial.jpg" alt=""></div></div>
+            <div class="fan-item fan-item--l2 hover-trigger" onclick="openLightbox('src/pictures/offclock.jpg','Off the clock')"><div class="fan-inner"><img src="src/pictures/offclock.jpg" alt=""></div></div>
+            <div class="fan-item fan-item--r2 hover-trigger" onclick="openLightbox('src/pictures/note-sage.jpg','Sage AI session')"><div class="fan-inner"><img src="src/pictures/note-sage.jpg" alt=""></div></div>
+            <div class="fan-item fan-item--l1 hover-trigger" onclick="openLightbox('src/pictures/dev-student.jpg','At WeThinkCode_')"><div class="fan-inner"><img src="src/pictures/dev-student.jpg" alt=""></div></div>
+            <div class="fan-item fan-item--r1 hover-trigger" onclick="openLightbox('src/pictures/note-bootcamp.jpg','Bootcamp mentoring')"><div class="fan-inner"><img src="src/pictures/note-bootcamp.jpg" alt=""></div></div>
+            <div class="fan-item fan-main hover-trigger" onclick="openLightbox('src/pictures/hero-portrait.jpg','Mxolisi Khumalo')" data-cursor="Spread"><div class="fan-inner"><img src="src/pictures/hero-portrait.jpg" alt="Mxolisi Khumalo"></div></div>
         </div>
-        <div class="gal-row gal-row--b">
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/about-portrait.jpg','Mxolisi Khumalo')" data-cursor="Expand"><img src="src/pictures/about-portrait.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/note-microsoft.jpg','Microsoft AI Skilling Day')" data-cursor="Expand"><img src="src/pictures/note-microsoft.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/gal-lab2.jpg','In the lab')" data-cursor="Expand"><img src="src/pictures/gal-lab2.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/note-momentum.jpg','Momentum TechTalent Youth Day')" data-cursor="Expand"><img src="src/pictures/note-momentum.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/gal-thanks.jpg','Thank you — Mxolisi was here')" data-cursor="Expand"><img src="src/pictures/gal-thanks.jpg" alt=""></div>
-            <div class="gal-item hover-trigger" onclick="openLightbox('src/pictures/mentoring.jpg','Mentoring session')" data-cursor="Expand"><img src="src/pictures/mentoring.jpg" alt=""></div>
-            <!-- duplicate -->
-            <div class="gal-item" onclick="openLightbox('src/pictures/about-portrait.jpg','Mxolisi Khumalo')"><img src="src/pictures/about-portrait.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/note-microsoft.jpg','Microsoft AI Skilling Day')"><img src="src/pictures/note-microsoft.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/gal-lab2.jpg','In the lab')"><img src="src/pictures/gal-lab2.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/note-momentum.jpg','Momentum TechTalent Youth Day')"><img src="src/pictures/note-momentum.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/gal-thanks.jpg','Thank you — Mxolisi was here')"><img src="src/pictures/gal-thanks.jpg" alt=""></div>
-            <div class="gal-item" onclick="openLightbox('src/pictures/mentoring.jpg','Mentoring session')"><img src="src/pictures/mentoring.jpg" alt=""></div>
-        </div>
+        <p class="fan-hint">Hover to spread · click to view</p>
     </section>
 
     <!-- ===================== EDITORIAL BAND ===================== -->
     <section class="editorial" id="editorial">
         <div class="editorial__img">
-            <img src="src/pictures/editorial.jpg" alt="Mxolisi Khumalo" data-parallax="0.12">
+            <img src="src/pictures/editorial.jpg" alt="Mxolisi Khumalo" data-pan>
         </div>
         <div class="editorial__txt">
             <p class="eyebrow">// The standard</p>
@@ -660,25 +767,34 @@
     <section class="section" id="stack">
         <div class="section-head">
             <div>
-                <p class="eyebrow">// 07 — Toolbox</p>
+                <p class="eyebrow">// 09 — Toolbox</p>
                 <h2 class="display-title">The<br>Stack</h2>
             </div>
             <span class="section-index">(Daily drivers)</span>
         </div>
 
         <div class="tool-grid reveal">
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Java</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Python</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">C#</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">JavaScript</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">React</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">ASP.NET Core</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">SQL Server</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Spring Boot</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">AWS</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Azure</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Docker</span></div>
-            <div class="tool"><span class="t-dot"></span><span class="t-name">Git</span></div>
+            <!-- Logos from Devicon (jsDelivr). Grayscale until hover. -->
+            <div class="tool" title="Java"><img class="t-logo" loading="lazy" alt="Java" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span class="t-cap">Java</span></div>
+            <div class="tool" title="Python"><img class="t-logo" loading="lazy" alt="Python" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span class="t-cap">Python</span></div>
+            <div class="tool" title="C#"><img class="t-logo" loading="lazy" alt="C#" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"><span class="t-cap">C#</span></div>
+            <div class="tool" title="C"><img class="t-logo" loading="lazy" alt="C" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"><span class="t-cap">C</span></div>
+            <div class="tool" title="JavaScript"><img class="t-logo" loading="lazy" alt="JavaScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><span class="t-cap">JavaScript</span></div>
+            <div class="tool" title="TypeScript"><img class="t-logo" loading="lazy" alt="TypeScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"><span class="t-cap">TypeScript</span></div>
+
+            <div class="tool" title="React"><img class="t-logo" loading="lazy" alt="React" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"><span class="t-cap">React</span></div>
+            <div class="tool" title="ASP.NET Core / .NET"><img class="t-logo" loading="lazy" alt=".NET" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg"><span class="t-cap">.NET</span></div>
+            <div class="tool" title="Spring Boot"><img class="t-logo" loading="lazy" alt="Spring" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"><span class="t-cap">Spring</span></div>
+            <div class="tool" title="Microsoft SQL Server"><img class="t-logo" loading="lazy" alt="SQL Server" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"><span class="t-cap">SQL Server</span></div>
+            <div class="tool" title="MySQL"><img class="t-logo" loading="lazy" alt="MySQL" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"><span class="t-cap">MySQL</span></div>
+            <div class="tool" title="MIPS Assembly"><span class="t-mono">ASM</span><span class="t-cap">Assembly</span></div>
+
+            <div class="tool" title="Amazon Web Services"><img class="t-logo" loading="lazy" alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"><span class="t-cap">AWS</span></div>
+            <div class="tool" title="Microsoft Azure"><img class="t-logo" loading="lazy" alt="Azure" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"><span class="t-cap">Azure</span></div>
+            <div class="tool" title="Docker"><img class="t-logo" loading="lazy" alt="Docker" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span class="t-cap">Docker</span></div>
+            <div class="tool" title="Git"><img class="t-logo" loading="lazy" alt="Git" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span class="t-cap">Git</span></div>
+            <div class="tool" title="Linux"><img class="t-logo" loading="lazy" alt="Linux" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"><span class="t-cap">Linux</span></div>
+            <div class="tool" title="HTML5 &amp; CSS3"><img class="t-logo" loading="lazy" alt="HTML5" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"><span class="t-cap">HTML / CSS</span></div>
         </div>
     </section>
 
@@ -699,11 +815,14 @@
     <!-- ===================== LIGHTBOX ===================== -->
     <div id="lightbox">
         <div class="lb-close hover-trigger">Close [Esc]</div>
+        <div id="lightbox-prev" class="lb-nav lb-prev hover-trigger is-hidden" onclick="event.stopPropagation(); galleryStep(-1)">‹</div>
+        <div id="lightbox-next" class="lb-nav lb-next hover-trigger is-hidden" onclick="event.stopPropagation(); galleryStep(1)">›</div>
         <img id="lightbox-img" class="hidden-media" src="" alt="">
         <video id="lightbox-video" class="hidden-media" controls playsinline>
             <source id="lightbox-video-source" src="" type="video/mp4">
         </video>
         <p id="lightbox-caption" class="lb-caption"></p>
+        <div id="lightbox-counter" class="lb-counter is-hidden"></div>
     </div>
 
     <script src="src/js/app.js"></script>

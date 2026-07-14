@@ -121,19 +121,34 @@ if (finePointer && window.gsap) {
 }
 
 /* ------------------------------------------------------------
-   4. Hero portrait 3D tilt
+   4. Hero portrait — cursor-driven phase reveal
    ------------------------------------------------------------ */
-if (finePointer && window.gsap) {
-    const portrait = document.querySelector('.portrait');
-    if (portrait) {
-        window.addEventListener('mousemove', (e) => {
-            const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
-            const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
-            gsap.to(portrait, { duration: 0.6, rotationY: xVal * 12, rotationX: -yVal * 12,
-                ease: 'power2.out', transformPerspective: 900, transformOrigin: 'center' });
-        });
+(function heroPhase() {
+    const portrait = document.getElementById('heroPortrait');
+    if (!portrait) return;
+    const reveal = portrait.querySelector('.ph-reveal');
+    if (!reveal) return;
+
+    if (!finePointer) {
+        // Touch: gently pulse the reveal so both images are discoverable
+        reveal.style.setProperty('--r', '150px');
+        reveal.style.setProperty('--px', '65%');
+        reveal.style.setProperty('--py', '40%');
+        return;
     }
-}
+
+    const setVars = (r) => reveal.style.setProperty('--r', r + 'px');
+    portrait.addEventListener('mousemove', (e) => {
+        const rect = portrait.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        reveal.style.setProperty('--px', x + '%');
+        reveal.style.setProperty('--py', y + '%');
+        reveal.style.setProperty('--ring', '150px');
+    });
+    portrait.addEventListener('mouseenter', () => setVars(120));
+    portrait.addEventListener('mouseleave', () => { setVars(0); reveal.style.setProperty('--ring', '0px'); });
+})();
 
 /* ------------------------------------------------------------
    5. Hero intro (called after preloader)
@@ -196,6 +211,8 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
    8. Animated counters
    ------------------------------------------------------------ */
 function animateCounter(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
     const target = parseFloat(el.getAttribute('data-count'));
     const dec = (el.getAttribute('data-decimals') | 0);
     const dur = 1600; const start = performance.now();
@@ -208,10 +225,12 @@ function animateCounter(el) {
     };
     requestAnimationFrame(step);
 }
-if (window.ScrollTrigger && !prefersReduced) {
-    document.querySelectorAll('[data-count]').forEach(el => {
-        ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => animateCounter(el) });
-    });
+// IntersectionObserver — reliable regardless of smooth-scroll / ScrollTrigger
+if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
 } else {
     document.querySelectorAll('[data-count]').forEach(el => {
         const dec = (el.getAttribute('data-decimals') | 0);
@@ -255,21 +274,87 @@ document.querySelectorAll('.award').forEach(card => {
 })();
 
 /* ------------------------------------------------------------
-   11. Lightbox (image + video)
+   11. Lightbox (single image / video) + Event galleries
    ------------------------------------------------------------ */
 const lightbox = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightbox-img');
 const lbVideo = document.getElementById('lightbox-video');
 const lbSrc = document.getElementById('lightbox-video-source');
 const lbCap = document.getElementById('lightbox-caption');
+const lbPrev = document.getElementById('lightbox-prev');
+const lbNext = document.getElementById('lightbox-next');
+const lbCounter = document.getElementById('lightbox-counter');
 
-window.openLightbox = function (source, caption, isVideo = false) {
-    if (!lightbox) return;
+// Field Notes / event image sets. Each item: [src, caption]
+const GALLERIES = {
+    mentor: {
+        title: 'Stepping up as Technical Mentor · WeThinkCode_',
+        images: [
+            ['src/pictures/events/mentor-1.jpg', 'Deriving the pixel-gradient formula on the whiteboard'],
+            ['src/pictures/events/mentor-2.jpg', 'A community mentoring session'],
+            ['src/pictures/events/mentor-3.jpg', 'Technical Mentor · WeThinkCode_'],
+            ['src/pictures/events/mentor-4.jpg', 'Technical Mentor · WeThinkCode_'],
+            ['src/pictures/events/mentor-5.jpg', 'Technical Mentor · WeThinkCode_']
+        ]
+    },
+    bootcamp: {
+        title: 'Mentoring 115+ at the JHB Bootcamp',
+        images: [
+            ['src/pictures/events/bootcamp-1.jpg', 'Guiding students through their final project'],
+            ['src/pictures/events/bootcamp-2.jpg', 'Bootcamp students passing their tests'],
+            ['src/pictures/events/bootcamp-3.jpg', 'Reviewing student projects'],
+            ['src/pictures/events/bootcamp-4.jpg', 'In the lab'],
+            ['src/pictures/events/bootcamp-5.jpg', 'In the lab']
+        ]
+    },
+    microsoft: {
+        title: "Microsoft SA · AI Skilling Day, Gallagher Convention",
+        images: [
+            ['src/pictures/events/microsoft-1.jpg', 'Microsoft AI Skilling Day'],
+            ['src/pictures/events/microsoft-2.jpg', 'Skilling Day attendee tag'],
+            ['src/pictures/events/microsoft-3.jpg', 'Keynote · AI for financial services & social impact'],
+            ['src/pictures/events/microsoft-4.jpg', 'Microsoft AI Skilling Day']
+        ]
+    },
+    sage: {
+        title: 'Unlocking AI: Learning & Career Pathways · Sage',
+        images: [
+            ['src/pictures/events/sage-1.jpg', 'The cohort at Sage'],
+            ['src/pictures/events/sage-2.jpg', 'Unlocking AI · Sage'],
+            ['src/pictures/events/sage-3.jpg', 'Unlocking AI · Sage'],
+            ['src/pictures/events/sage-4.jpg', 'Unlocking AI · Sage'],
+            ['src/pictures/events/sage-5.jpg', 'Unlocking AI · Sage'],
+            ['src/pictures/events/sage-6.jpg', 'Unlocking AI · Sage']
+        ]
+    },
+    momentum: {
+        title: 'TechTalent Youth Day · Momentum Group, Centurion',
+        images: [
+            ['src/pictures/events/momentum-1.jpg', 'TechTalent Youth Day · Momentum'],
+            ['src/pictures/events/momentum-2.jpg', 'TechTalent Youth Day — 19 June 2025'],
+            ['src/pictures/events/momentum-3.jpg', 'TechTalent Youth Day · Momentum'],
+            ['src/pictures/events/momentum-4.jpg', 'TechTalent Youth Day · Momentum'],
+            ['src/pictures/events/momentum-5.jpg', 'Thank you — Mxolisi was here'],
+            ['src/pictures/events/momentum-6.jpg', 'TechTalent Youth Day · Momentum']
+        ]
+    },
+    associate: {
+        title: 'Technology Associate · ActiveOps',
+        images: [
+            ['src/pictures/ms-associate.jpg', 'The ActiveOps team'],
+            ['src/pictures/dev-developer.jpg', 'At the ActiveOps office']
+        ]
+    }
+};
+
+let galleryList = null;   // array of [src, caption]
+let galleryIndex = 0;
+
+function showMedia(source, caption, isVideo) {
     lbCap.textContent = caption || '';
     lbImg.classList.add('hidden-media');
     lbVideo.classList.add('hidden-media');
     lbVideo.pause();
-
     if (isVideo) {
         lbVideo.classList.remove('hidden-media');
         lbSrc.src = source; lbVideo.load(); lbVideo.play().catch(() => {});
@@ -277,10 +362,46 @@ window.openLightbox = function (source, caption, isVideo = false) {
         lbImg.classList.remove('hidden-media');
         lbImg.src = source;
     }
+}
+
+function updateNav() {
+    const multi = galleryList && galleryList.length > 1;
+    [lbPrev, lbNext, lbCounter].forEach(el => el && el.classList.toggle('is-hidden', !multi));
+    if (multi && lbCounter) lbCounter.textContent = (galleryIndex + 1) + ' / ' + galleryList.length;
+}
+
+function openLB() {
     lightbox.classList.add('is-open');
     requestAnimationFrame(() => lightbox.style.opacity = '1');
     if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
+}
+
+window.openLightbox = function (source, caption, isVideo = false) {
+    if (!lightbox) return;
+    galleryList = null; galleryIndex = 0;
+    showMedia(source, caption, isVideo);
+    updateNav();
+    openLB();
+};
+
+window.openGallery = function (key) {
+    if (!lightbox) return;
+    const g = GALLERIES[key];
+    if (!g) return;
+    galleryList = g.images; galleryIndex = 0;
+    const [src, cap] = galleryList[0];
+    showMedia(src, (g.title ? g.title + ' — ' : '') + cap, false);
+    updateNav();
+    openLB();
+};
+
+window.galleryStep = function (dir) {
+    if (!galleryList) return;
+    galleryIndex = (galleryIndex + dir + galleryList.length) % galleryList.length;
+    const [src, cap] = galleryList[galleryIndex];
+    showMedia(src, cap, false);
+    updateNav();
 };
 
 window.closeLightbox = function () {
@@ -289,13 +410,28 @@ window.closeLightbox = function () {
     setTimeout(() => {
         lightbox.classList.remove('is-open');
         lbImg.src = ''; lbVideo.pause(); lbSrc.src = '';
+        galleryList = null;
         document.body.style.overflow = '';
         if (lenis) lenis.start();
     }, 300);
 };
 
 if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lb-close')) closeLightbox(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+    if (!lightbox || !lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowRight') galleryStep(1);
+    else if (e.key === 'ArrowLeft') galleryStep(-1);
+});
+// Swipe support (touch)
+if (lightbox) {
+    let sx = 0;
+    lightbox.addEventListener('touchstart', (e) => { sx = e.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 50) galleryStep(dx < 0 ? 1 : -1);
+    }, { passive: true });
+}
 
 /* ------------------------------------------------------------
    12. Year in footer
@@ -308,35 +444,34 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
 if (window.gsap && window.ScrollTrigger && !prefersReduced) {
     const vbg = document.querySelector('.vision__bg');
     if (vbg) {
-        gsap.fromTo(vbg, { yPercent: -12 }, {
-            yPercent: 12, ease: 'none',
+        gsap.fromTo(vbg, { yPercent: -7 }, {
+            yPercent: 7, ease: 'none',
             scrollTrigger: { trigger: '.vision', start: 'top bottom', end: 'bottom top', scrub: true }
         });
     }
-    // Generic data-parallax elements (e.g. editorial image)
-    gsap.utils.toArray('[data-parallax]').forEach(el => {
-        const amt = parseFloat(el.getAttribute('data-parallax')) || 0.1;
-        gsap.fromTo(el, { yPercent: -amt * 100 }, {
-            yPercent: amt * 100, ease: 'none',
+    // Editorial image: pan through the FULL image (top -> bottom) as it scrolls past
+    gsap.utils.toArray('[data-pan]').forEach(el => {
+        gsap.fromTo(el, { objectPosition: '50% 0%' }, {
+            objectPosition: '50% 100%', ease: 'none',
             scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true }
         });
     });
 }
 
 /* ------------------------------------------------------------
-   14. Field Notes — horizontal scroll (pin) with fallback
+   14. Horizontal pinned scroll (Field Notes + Journey)
    ------------------------------------------------------------ */
-(function fieldNotes() {
-    const section = document.getElementById('notes');
-    const viewport = document.getElementById('fnViewport');
-    const track = document.getElementById('fnTrack');
-    const bar = document.getElementById('fnBar');
+function setupHorizontal(sectionId, viewportId, trackId, barId) {
+    const section = document.getElementById(sectionId);
+    const viewport = document.getElementById(viewportId);
+    const track = document.getElementById(trackId);
+    const bar = barId ? document.getElementById(barId) : null;
     if (!section || !viewport || !track) return;
 
     const canPin = window.gsap && window.ScrollTrigger && !prefersReduced && finePointer && window.innerWidth > 820;
 
     if (!canPin) {
-        // Native horizontal scroll fallback (touch / reduced motion / small screens)
+        // Native horizontal swipe fallback (touch / reduced motion / small screens)
         viewport.classList.add('is-native');
         if (bar) {
             const update = () => {
@@ -363,7 +498,9 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
             onUpdate: (self) => { if (bar) bar.style.width = (self.progress * 100) + '%'; }
         }
     });
-})();
+}
+setupHorizontal('journey', 'jrViewport', 'jrTrack', 'jrBar');
+setupHorizontal('notes', 'fnViewport', 'fnTrack', 'fnBar');
 
 /* ------------------------------------------------------------
    15. Cert categories reveal

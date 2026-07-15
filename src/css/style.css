@@ -308,24 +308,13 @@ main, nav, footer { position: relative; z-index: 2; }
     box-shadow: 0 30px 80px rgba(0,0,0,0.6);
 }
 .portrait .ph img { width: 100%; height: 100%; object-fit: cover; }
-.portrait .ph-base img { filter: grayscale(100%) contrast(1.05); transition: filter .6s var(--ease); }
-.portrait:hover .ph-base img { filter: grayscale(35%); }
-/* Reveal layer: a soft circle at the cursor that phases into the second image */
-@property --r { syntax: '<length>'; inherits: false; initial-value: 0px; }
-.portrait .ph-reveal {
-    --r: 0px;
-    -webkit-mask: radial-gradient(circle var(--r) at var(--px, 50%) var(--py, 50%), #000 55%, transparent 72%);
-            mask: radial-gradient(circle var(--r) at var(--px, 50%) var(--py, 50%), #000 55%, transparent 72%);
-    transition: --r .35s var(--ease);
-}
-.portrait .ph-reveal img { filter: grayscale(0%) contrast(1.05); }
-.portrait .ph-reveal::after {
-    content: ''; position: absolute;
-    left: var(--px, 50%); top: var(--py, 50%); width: var(--ring, 0px); height: var(--ring, 0px);
-    transform: translate(-50%, -50%); border-radius: 50%;
-    border: 1px solid var(--accent); opacity: 0.55; pointer-events: none;
-    transition: width .25s var(--ease), height .25s var(--ease), opacity .25s;
-}
+.portrait .ph-base img { filter: none; }
+/* Reveal layer: the WHOLE second image slowly cross-fades in on hover,
+   so the coloured top picture shows for a beat before it switches. */
+.portrait .ph-reveal { opacity: 0; transition: opacity 1.7s var(--ease) 0.18s; }
+.portrait:hover .ph-reveal,
+.portrait.show-reveal .ph-reveal { opacity: 1; }
+.portrait .ph-reveal img { filter: none; }
 .portrait .tag {
     position: absolute; bottom: 14px; left: 14px; z-index: 3;
     font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -742,24 +731,25 @@ a.cert-row .cr-name::after { content: ' ↗'; color: var(--muted-2); font-size: 
 /* ============================================================
    JOURNEY — horizontal floating milestones
    ============================================================ */
-.journey-h { position: relative; padding-top: clamp(5rem,11vw,9rem); }
-.jr-head { padding: 0 clamp(1.25rem,4vw,5rem); margin-bottom: clamp(1.5rem,3vw,2.5rem); }
-.jr-viewport { overflow: hidden; }
+.journey-h { position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+.jr-head { flex: 0 0 auto; padding: clamp(4.5rem,9vw,7rem) clamp(1.25rem,4vw,5rem) 0; }
+.jr-viewport { flex: 1 1 auto; display: flex; align-items: center; overflow: hidden; }
 .jr-track {
-    display: flex; align-items: center; gap: clamp(2.5rem, 6vw, 6rem);
-    width: max-content; height: 80vh; padding: 0 clamp(1.25rem,6vw,8rem);
+    display: flex; align-items: center; gap: clamp(4rem, 9vw, 10rem);
+    width: max-content; padding: 0 clamp(2rem, 9vw, 11rem);
     will-change: transform;
 }
-.jr-item { flex: 0 0 auto; display: flex; gap: 1.6rem; }
-.jr-item--tall { flex-direction: column; width: min(42vh, 380px); align-items: flex-start; }
-.jr-item--wide { flex-direction: row; align-items: center; width: min(80vw, 780px); }
-.jr-media {
+/* Every milestone: image on the left, caption on the right */
+.jr-item, .jr-item--tall, .jr-item--wide {
+    flex: 0 0 auto; display: flex; flex-direction: row; align-items: stretch;
+    gap: clamp(1.4rem, 2.4vw, 2.4rem); width: auto;
+}
+.jr-media, .jr-item--tall .jr-media, .jr-item--wide .jr-media {
+    flex: none; width: clamp(230px, 24vw, 350px); height: clamp(300px, 52vh, 560px);
     position: relative; border-radius: 16px; overflow: hidden;
     border: 1px solid var(--line-soft); background: var(--bg-card);
     box-shadow: 0 30px 70px rgba(0,0,0,0.5); animation: floaty 7s ease-in-out infinite;
 }
-.jr-item--tall .jr-media { width: 100%; height: 48vh; }
-.jr-item--wide .jr-media { flex: 0 0 54%; height: 56vh; }
 .jr-item:nth-child(even) .jr-media { animation-delay: -3.5s; }
 .jr-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter .6s var(--ease), transform 8s ease; }
 .jr-item:hover .jr-media img { filter: grayscale(0); transform: scale(1.05); }
@@ -769,29 +759,32 @@ a.cert-row .cr-name::after { content: ' ↗'; color: var(--muted-2); font-size: 
     background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); border: 1px solid var(--line);
     padding: 0.3rem 0.6rem; border-radius: 999px;
 }
-.jr-cap { max-width: 42ch; }
-.jr-item--tall .jr-cap { max-width: none; }
+/* Caption on the right, alternating vertical position top -> bottom */
+.jr-cap { width: min(300px, 32vw); display: flex; flex-direction: column; }
+.jr-item:nth-child(odd) .jr-cap { justify-content: flex-start; }
+.jr-item:nth-child(even) .jr-cap { justify-content: flex-end; }
 .jr-cap .yr { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
 .jr-cap h4 { font-size: clamp(1.3rem, 2.6vw, 2rem); font-weight: 600; margin: 0.4rem 0 0.2rem; letter-spacing: -0.01em; }
 .jr-cap .org { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
-.jr-cap p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-top: 0.8rem; }
-.jr-end { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; width: min(60vw, 460px); }
+.jr-cap p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.8rem; }
+.jr-end { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; width: min(60vw, 420px); }
 .jr-end h3 { font-weight: 700; letter-spacing: -0.03em; text-transform: uppercase; font-size: clamp(2rem,5vw,4rem); line-height: 0.95; }
 .jr-end p { color: var(--muted); margin-top: 1rem; max-width: 34ch; }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-/* Mobile / touch fallback: native horizontal swipe */
-.jr-viewport.is-native { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-.jr-viewport.is-native .jr-track { height: auto; padding-top: 1rem; padding-bottom: 2rem; }
-.jr-viewport.is-native .jr-item { scroll-snap-align: center; }
-.jr-viewport.is-native .jr-media { animation: none; }
-.jr-viewport.is-native .jr-item--tall .jr-media { height: 40vh; }
-.jr-viewport.is-native .jr-item--wide { width: 86vw; }
-.jr-viewport.is-native .jr-item--wide .jr-media { height: 34vh; }
+/* Mobile / touch fallback: native horizontal swipe, stacked card */
+.jr-viewport.is-native { flex: 0 0 auto; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.journey-h:has(.jr-viewport.is-native) { min-height: 0; display: block; }
+.jr-viewport.is-native .jr-track { padding: 1rem clamp(1.25rem,4vw,5rem) 2.5rem; gap: 1.25rem; }
+.jr-viewport.is-native .jr-item, .jr-viewport.is-native .jr-item--tall, .jr-viewport.is-native .jr-item--wide {
+    flex-direction: column; width: 74vw; max-width: 320px; scroll-snap-align: center; gap: 1rem;
+}
+.jr-viewport.is-native .jr-media { animation: none; width: 100%; height: 44vh; }
+.jr-viewport.is-native .jr-cap { width: 100%; }
 
 /* ============================================================
    FAN GALLERY (hand-fan photo spread)
    ============================================================ */
-.fan-section { padding: clamp(4rem,9vw,7rem) clamp(1.25rem,4vw,5rem); display: flex; justify-content: center; }
+.fan-section { padding: clamp(5rem,10vw,8rem) clamp(1.25rem,4vw,5rem) clamp(11rem,22vw,17rem); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .fan {
     position: relative; width: min(430px, 82vw); aspect-ratio: 3/4;
 }

@@ -126,28 +126,18 @@ if (finePointer && window.gsap) {
 (function heroPhase() {
     const portrait = document.getElementById('heroPortrait');
     if (!portrait) return;
-    const reveal = portrait.querySelector('.ph-reveal');
-    if (!reveal) return;
-
+    // Desktop: CSS :hover slowly cross-fades the whole second image in.
+    // Touch: tap toggles the reveal (auto-reverts after a beat).
     if (!finePointer) {
-        // Touch: gently pulse the reveal so both images are discoverable
-        reveal.style.setProperty('--r', '150px');
-        reveal.style.setProperty('--px', '65%');
-        reveal.style.setProperty('--py', '40%');
-        return;
+        let t;
+        portrait.addEventListener('click', () => {
+            portrait.classList.toggle('show-reveal');
+            clearTimeout(t);
+            if (portrait.classList.contains('show-reveal')) {
+                t = setTimeout(() => portrait.classList.remove('show-reveal'), 3000);
+            }
+        });
     }
-
-    const setVars = (r) => reveal.style.setProperty('--r', r + 'px');
-    portrait.addEventListener('mousemove', (e) => {
-        const rect = portrait.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        reveal.style.setProperty('--px', x + '%');
-        reveal.style.setProperty('--py', y + '%');
-        reveal.style.setProperty('--ring', '150px');
-    });
-    portrait.addEventListener('mouseenter', () => setVars(120));
-    portrait.addEventListener('mouseleave', () => { setVars(0); reveal.style.setProperty('--ring', '0px'); });
 })();
 
 /* ------------------------------------------------------------
@@ -336,13 +326,6 @@ const GALLERIES = {
             ['src/pictures/events/momentum-4.jpg', 'TechTalent Youth Day · Momentum'],
             ['src/pictures/events/momentum-5.jpg', 'Thank you — Mxolisi was here'],
             ['src/pictures/events/momentum-6.jpg', 'TechTalent Youth Day · Momentum']
-        ]
-    },
-    associate: {
-        title: 'Technology Associate · ActiveOps',
-        images: [
-            ['src/pictures/ms-associate.jpg', 'The ActiveOps team'],
-            ['src/pictures/dev-developer.jpg', 'At the ActiveOps office']
         ]
     }
 };

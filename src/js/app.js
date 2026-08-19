@@ -277,6 +277,13 @@ const lbCounter = document.getElementById('lightbox-counter');
 
 // Field Notes / event image sets. Each item: [src, caption]
 const GALLERIES = {
+    deswik: {
+        title: 'A Visit to Deswik offices for an insughtful afternoon',
+        images: [
+            ['src/pictures/events/deswik.jpg', 'Deswik office visit'],
+            ['src/pictures/events/deswik_presentation.jpg', 'An interactive presentation on innovation and opportunities']
+        ]
+    },
     mentor: {
         title: 'Stepping up as Technical Mentor · WeThinkCode_',
         images: [

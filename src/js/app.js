@@ -446,6 +446,47 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
             scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true }
         });
     });
+
+    /* --------------------------------------------------------
+       13b. Site-wide parallax depth (makes the scroll feel alive)
+       -------------------------------------------------------- */
+    const parallax = (target, fromY, toY, trigger, scrub = true) => {
+        gsap.utils.toArray(target).forEach(el => {
+            gsap.fromTo(el, { yPercent: fromY }, {
+                yPercent: toY, ease: 'none',
+                scrollTrigger: { trigger: trigger ? (el.closest(trigger) || el) : el, start: 'top bottom', end: 'bottom top', scrub }
+            });
+        });
+    };
+
+    // Hero portrait drifts up as you leave the hero (depth vs the headline)
+    const pw = document.querySelector('.portrait-wrap');
+    if (pw) gsap.to(pw, { yPercent: -14, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    // Profile photos move against their frame
+    parallax('.about-photo img', -6, 6, '.about-photo');
+
+    // Project images pan within their frame (object-position — no clash with hover scale)
+    gsap.utils.toArray('.p-media img').forEach(img => {
+        gsap.fromTo(img, { objectPosition: '50% 38%' }, {
+            objectPosition: '50% 62%', ease: 'none',
+            scrollTrigger: { trigger: img.closest('.project'), start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+    });
+
+    // Section eyebrow + index labels drift for subtle depth (title keeps its own reveal)
+    gsap.utils.toArray('.section .section-index').forEach(el => {
+        gsap.fromTo(el, { yPercent: 60 }, {
+            yPercent: -60, ease: 'none',
+            scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+    });
+
+    // Footer watermark drifts sideways
+    const fh = document.querySelector('.f-huge');
+    if (fh) gsap.fromTo(fh, { xPercent: -4 }, { xPercent: 4, ease: 'none',
+        scrollTrigger: { trigger: '.footer', start: 'top bottom', end: 'bottom top', scrub: true } });
 }
 
 /* ------------------------------------------------------------

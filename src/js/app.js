@@ -542,5 +542,32 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
     });
 }
 
+/* ------------------------------------------------------------
+   16. Fan gallery — animate open on scroll (touch devices)
+   Desktop uses :hover; touch has no hover, so open it as it
+   scrolls into view (and re-close on the way out) so it animates
+   instead of sitting pre-spread.
+   ------------------------------------------------------------ */
+(function fanReveal() {
+    const fan = document.getElementById('fan');
+    if (!fan) return;
+    if (finePointer) return;                 // desktop = hover
+    if (!('IntersectionObserver' in window)) { fan.classList.add('is-open'); return; }
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => fan.classList.toggle('is-open', e.isIntersecting && e.intersectionRatio >= 0.45));
+    }, { threshold: [0, 0.45, 0.7] });
+    io.observe(fan);
+})();
+
+/* Re-fit pinned sections when the viewport size changes (e.g. laptop
+   rotate / window resize) so the horizontal scroll length stays correct */
+if (window.ScrollTrigger) {
+    let rz;
+    window.addEventListener('resize', () => {
+        clearTimeout(rz);
+        rz = setTimeout(() => ScrollTrigger.refresh(), 200);
+    });
+}
+
 /* Refresh ScrollTrigger once everything (images) settled */
 window.addEventListener('load', () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
